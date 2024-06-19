@@ -15,7 +15,7 @@ const projects = [
     date: "2021",
     imageUrl: "/images/WAcare.png",
     buttonText: "Link",
-    link: "#",
+    link: "https://washington-state-hospital-records.vercel.app/",
   },
   {
     title: "Covid Adventures Game",
