@@ -9,14 +9,14 @@ const largeProjects = [
     link: "https://example.com/large-project2",
   },
   {
-    title: "Konnor Kooi",
+    title: "Computer Science",
     imageUrl: "/images/Taylor+dock.png",
     buttonText: "Learn More",
     link: "https://example.com/large-project1",
   },
   {
-    title: "Large Project 3",
-    imageUrl: "/images/project3.png",
+    title: "WWU",
+    imageUrl: "/images/wwutrees.png",
     buttonText: "Learn More",
     link: "https://example.com/large-project3",
   },

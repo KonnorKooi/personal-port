@@ -4,14 +4,6 @@ import Image from "next/image";
 // Sample project data with random dates
 const projects = [
   {
-    title: "Personal Portfolio",
-    date: "2024",
-    imageUrl:
-      "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg",
-    buttonText: "Link",
-    link: "#",
-  },
-  {
     title: "WWU Schedule Optimizer",
     date: "2024",
     imageUrl: "/images/scheduleOpt.png",
@@ -19,12 +11,18 @@ const projects = [
     link: "https://cwooper.me/schedule-optimizer/",
   },
   {
-    title: "Project 3",
+    title: "WA Care Website",
     date: "2021",
-    imageUrl:
-      "https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg",
+    imageUrl: "/images/WAcare.png",
     buttonText: "Link",
     link: "#",
+  },
+  {
+    title: "Covid Adventures Game",
+    date: "2020",
+    imageUrl: "/images/CovidAdventures.png",
+    buttonText: "Link",
+    link: "https://flowlab.io/game/play/1719733",
   },
   {
     title: "Project 4",
@@ -43,11 +41,12 @@ const projects = [
     link: "#",
   },
   {
-    title: "Covid Adventures Game",
-    date: "2020",
-    imageUrl: "/images/CovidAdventures.png",
+    title: "Personal Portfolio",
+    date: "2024",
+    imageUrl:
+      "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg",
     buttonText: "Link",
-    link: "https://flowlab.io/game/play/1719733",
+    link: "#",
   },
 ];
 
@@ -139,7 +138,7 @@ const ProjectCarousel: React.FC = () => {
                   alt={project.title}
                   layout="fill"
                   objectFit="cover"
-                  className="transition-transform duration-300 ease-in-out hover:scale-105"
+                  className="transition-transform duration-300 ease-in-out hover:scale-105 rounded-lg"
                 />
                 {/* Project Link */}
                 <a
