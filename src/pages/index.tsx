@@ -9,7 +9,7 @@ const App: React.FC = () => {
   return (
     <div className=" bg-black text-white">
       <Navbar />
-      <div className="w-full bg-black">
+      <div className="bg-black">
         <LargeCarousel />
       </div>
       <div className="pt-8 pb-8">

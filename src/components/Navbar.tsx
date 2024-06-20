@@ -3,10 +3,16 @@ import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [showHelp, setShowHelp] = useState(false);
+  const [debounce, setDebounce] = useState(false);
   const lastUpdated = new Date().toLocaleDateString();
 
   const handleHelpClick = () => {
+    if (debounce) return;
     setShowHelp(!showHelp);
+    setDebounce(true);
+    setTimeout(() => {
+      setDebounce(false);
+    }, 300); // Adjust the debounce delay as needed
   };
 
   useEffect(() => {

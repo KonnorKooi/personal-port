@@ -72,7 +72,7 @@ const LargeCarousel: React.FC = () => {
   return (
     <div className="w-full h-[90vh] relative flex items-start justify-center">
       <div
-        className="carousel carousel-center w-full h-full flex items-start overflow-x-scroll no-scrollbar space-x-4 px-10 pt-2" // Adjusted px-8 for padding
+        className="carousel carousel-center h-full w-full p-2 pt-2 space-x-5 flex items-start overflow-x-scroll no-scrollbar sm:px-4 md:px-4 lg:px-4 xl:px-10" // Adjusted px-8 for padding
         ref={carouselRef}>
         {largeProjects.map((project, index) => (
           <div
