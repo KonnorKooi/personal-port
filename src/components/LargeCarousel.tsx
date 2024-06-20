@@ -72,7 +72,7 @@ const LargeCarousel: React.FC = () => {
   return (
     <div className="w-full h-[90vh] relative flex items-start justify-center">
       <div
-        className="carousel carousel-center w-full h-full flex items-start overflow-x-scroll no-scrollbar space-x-4 px-4 pt-2"
+        className="carousel carousel-center w-full h-full flex items-start overflow-x-scroll no-scrollbar space-x-4 px-10 pt-2" // Adjusted px-8 for padding
         ref={carouselRef}>
         {largeProjects.map((project, index) => (
           <div
@@ -88,7 +88,9 @@ const LargeCarousel: React.FC = () => {
                 objectFit="cover"
                 className="transition-transform duration-300 ease-in-out hover:scale-105"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                {" "}
+                {/* Reduced opacity */}
                 <h2 className="text-4xl md:text-6xl text-white p-4">
                   {project.title}
                 </h2>

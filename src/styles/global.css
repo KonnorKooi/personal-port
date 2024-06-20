@@ -1,9 +1,14 @@
-/* src/styles/global.css */
+/* Import the Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Apply Tailwind base styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Add any custom styles here */
+/* Apply custom styles */
 body {
-  @apply bg-black text-white;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000000; /* Apply bg-black */
+  color: #ffffff; /* Apply text-white */
 }

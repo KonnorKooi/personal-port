@@ -1,78 +1,145 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
+  const [showHelp, setShowHelp] = useState(false);
+  const lastUpdated = new Date().toLocaleDateString();
+
+  const handleHelpClick = () => {
+    setShowHelp(!showHelp);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        showHelp &&
+        !document.getElementById("helpBox")?.contains(event.target as Node) &&
+        !document.getElementById("helpButton")?.contains(event.target as Node)
+      ) {
+        setShowHelp(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (showHelp) {
+        setShowHelp(false);
+      }
+    };
+
+    const handleWheel = () => {
+      if (showHelp) {
+        setShowHelp(false);
+      }
+    };
+
+    const handleTouchStart = () => {
+      if (showHelp) {
+        setShowHelp(false);
+      }
+    };
+
+    const handleResize = () => {
+      if (showHelp) {
+        setShowHelp(false);
+      }
+    };
+
+    if (showHelp) {
+      document.addEventListener("click", handleClickOutside);
+      document.addEventListener("scroll", handleScroll);
+      document.addEventListener("wheel", handleWheel);
+      document.addEventListener("touchstart", handleTouchStart);
+      window.addEventListener("resize", handleResize);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("wheel", handleWheel);
+      document.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("resize", handleResize);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("wheel", handleWheel);
+      document.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [showHelp]);
+
   return (
-    <div className="navbar bg-black">
+    <div className="navbar bg-black pb-2 relative">
       <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a>Homepage</a>
-            </li>
-            <li>
-              <a>Portfolio</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
-          </ul>
+        <div className="pl-2">
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={50}
+            height={50}
+            className="h-12 w-12"
+          />
         </div>
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost text-xl">Konnor Kooi</a>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
+        <button
+          className={`btn btn-ghost btn-circle ${showHelp ? "open" : ""}`}
+          onClick={handleHelpClick}
+          id="helpButton">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
+            width="32px"
+            height="32px"
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
             viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4C9.243 4 7 6.243 7 9h2c0-1.654 1.346-3 3-3s3 1.346 3 3c0 1.069-.454 1.465-1.481 2.255-.382.294-.813.626-1.226 1.038C10.981 13.604 10.995 14.897 11 15v2h2v-2.009c0-.024.023-.601.707-1.284.32-.32.682-.598 1.031-.867C15.798 12.024 17 11.1 17 9c0-2.757-2.243-5-5-5zm-1 14h2v2h-2z" />
           </svg>
         </button>
-        <button className="btn btn-ghost btn-circle">
-          <div className="indicator">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <span className="badge badge-xs badge-primary indicator-item"></span>
-          </div>
-        </button>
+        <div
+          id="helpBox"
+          className={`text-black absolute w-64 p-4 bg-white rounded-lg shadow-lg z-50 transform transition-transform duration-300 ease-out origin-top-right ${
+            showHelp ? "scale-100" : "scale-0"
+          }`}
+          style={{
+            top: "2.5rem",
+            right: "2rem", // Adjusted from "1rem" to move further left
+            transformOrigin: "top right",
+            visibility: showHelp ? "visible" : "hidden", // Ensure visibility
+          }}>
+          <h2 className="text-lg font-semibold mb-2">Project Information</h2>
+          <p className="text-sm mb-1">This project is built using:</p>
+          <ul className="list-disc list-inside text-sm mb-2">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Tailwind CSS</li>
+          </ul>
+          <p className="text-sm">
+            Last Updated: <strong>{lastUpdated}</strong>
+          </p>
+        </div>
       </div>
+      <style>{`
+        .btn-circle.open {
+          background-color: #f3f4f6; /* Example background color when the button is expanded */
+        }
+
+        #helpBox {
+          transition: transform 0.3s ease-out, visibility 0.3s;
+          transform-origin: top right;
+        }
+
+        .scale-0 {
+          transform: scale(0);
+        }
+
+        .scale-100 {
+          transform: scale(1);
+        }
+      `}</style>
     </div>
   );
 };

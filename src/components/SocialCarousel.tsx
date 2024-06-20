@@ -64,7 +64,7 @@ const SocialCarousel: React.FC = () => {
 
   return (
     <div className="relative w-full bg-black antialiased text-gray-900 mt-8">
-      <div className="flex justify-between items-center p-2 pb-0 ml-4 mr-4">
+      <div className="flex justify-between items-center p-2 pb-0 first-line: sm:px-4 md:px-10 lg:px-16 xl:px-32">
         <h2 className="text-2xl text-white">Socials</h2>
         <div className="flex space-x-2">
           <button
@@ -104,7 +104,7 @@ const SocialCarousel: React.FC = () => {
         </div>
       </div>
       <div
-        className="carousel carousel-center w-full p-2 pt-2 space-x-5 flex items-start overflow-x-scroll no-scrollbar h-[325px]"
+        className="carousel carousel-center w-full p-2 pt-2 space-x-5 flex items-start overflow-x-scroll no-scrollbar h-[325px] backdrop: sm:px-4 md:px-10 lg:px-16 xl:px-32"
         ref={carouselRef}>
         {socials.map((social, index) => (
           <div
