@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { projects } from "../../utils/constants";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
@@ -34,9 +34,11 @@ const ProjectCard: React.FC<{
                 <Image
                     src={project.imageUrl}
                     alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
-                />
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: "cover"
+                    }} />
             </div>
             <div className="p-4">
                 <h3 className="text-xl font-semibold text-white">

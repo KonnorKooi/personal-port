@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { socials } from "../../utils/constants";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
@@ -34,9 +34,11 @@ const SocialCard: React.FC<{
                 <Image
                     src={social.backgroundImage}
                     alt={social.name}
-                    layout="fill"
-                    objectFit="cover"
-                />
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: "cover"
+                    }} />
             </div>
             <div className="p-4">
                 <div className="flex items-center">
@@ -44,10 +46,12 @@ const SocialCard: React.FC<{
                         <Image
                             src={social.imageUrl}
                             alt={social.name}
-                            layout="fill"
-                            objectFit="contain"
                             className="rounded-full"
-                        />
+                            fill
+                            sizes="100vw"
+                            style={{
+                                objectFit: "contain"
+                            }} />
                     </div>
                     <h3 className="text-xl font-semibold text-white">
                         {social.name}

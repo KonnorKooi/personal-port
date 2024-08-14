@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { largeProjects } from "../../utils/constants";
 
@@ -57,10 +57,13 @@ const FullPageImages: React.FC = () => {
                                 src={project.imageUrl}
                                 alt={project.title}
                                 fill
-                                sizes="100vw"
                                 priority={index === 0}
                                 className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-                            />
+                                sizes="100vw"
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto"
+                                }} />
                             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
                                 <h2 className="text-4xl md:text-6xl text-white p-4 text-center">
                                     {project.title}

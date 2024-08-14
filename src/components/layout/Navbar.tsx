@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
     const [showHelp, setShowHelp] = useState(false);
@@ -87,7 +87,10 @@ const Navbar: React.FC = () => {
                         width={50}
                         height={50}
                         className="h-12 w-12"
-                    />
+                        style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                        }} />
                 </div>
                 <div>
                     <span className="text-white text-xl font-semibold">
