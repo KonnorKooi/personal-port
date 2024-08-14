@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { socials } from "../../utils/constants";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
