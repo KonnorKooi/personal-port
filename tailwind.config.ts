@@ -12,10 +12,10 @@ const config: Config = {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'], // Add Montserrat here
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       height: {
-        '128': '32rem', // Add this line to define custom height
+        '128': '32rem',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -26,13 +26,22 @@ const config: Config = {
         black: '#000000',
         graywhite: '#F7F9FB',
       },
+      transitionProperty: {
+        'transform': 'transform',
+      },
+      transitionDuration: {
+        '1000': '1000ms',
+      },
+      transitionTimingFunction: {
+        'ease-out': 'ease-out',
+      },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
-  daisyui: {
-    themes: ["light", "dark"], // Include any themes you want
+  variants: {
+    extend: {
+      transform: ['hover', 'focus'],
+      translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    },
   },
 };
 

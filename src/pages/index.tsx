@@ -1,29 +1,24 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import LargeCarousel from "../components/LargeCarousel";
-import ProjectCarousel from "../components/ProjectCarousel";
-import SocialCarousel from "../components/SocialCarousel";
-import FooterKonnor from "../components/FooterKonnor";
+import {
+    Navbar,
+    FullPageImages,
+    ProjectCarousel,
+    SocialCarousel,
+    Footer,
+} from "../components";
 
-const App: React.FC = () => {
-  return (
-    <div className=" bg-black text-white">
-      <Navbar />
-      <div className="bg-black">
-        <LargeCarousel />
-      </div>
-      <div className="pt-8 pb-8">
-        <ProjectCarousel />
-      </div>
-      <div className="pt-8 pb-8">
-        <SocialCarousel />
-      </div>
-      <div className="text-white bg-black">
-        {" "}
-        <FooterKonnor />
-      </div>
-    </div>
-  );
+const Home: React.FC = () => {
+    return (
+        <div className="bg-black text-white">
+            <Navbar />
+            <main>
+                <FullPageImages />
+                <ProjectCarousel />
+                <SocialCarousel />
+            </main>
+            <Footer />
+        </div>
+    );
 };
 
-export default App;
+export default Home;

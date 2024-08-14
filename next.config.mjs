@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ["img.daisyui.com", "img.icons8.com"], // Add all external domains you use for images
-  },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "img.icons8.com",
+                port: "",
+                pathname: "/**",
+            },
+        ],
+    },
 };
 
 export default nextConfig;
