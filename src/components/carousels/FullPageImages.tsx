@@ -17,7 +17,7 @@ const FullPageSection: React.FC<{ project: (typeof largeProjects)[0] }> = ({
     project,
 }) => {
     const [ref, inView] = useInView({
-        threshold: 0.5,
+        threshold: 0.7,
         triggerOnce: false,
     });
 
@@ -31,13 +31,25 @@ const FullPageSection: React.FC<{ project: (typeof largeProjects)[0] }> = ({
                     sizes="100vw"
                     className="object-cover"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white p-8">
                     <h2
-                        className={`text-4xl md:text-6xl text-white p-4 text-center transition-opacity duration-1000 ${
+                        className={`text-4xl md:text-6xl font-bold mb-4 text-center transition-opacity duration-1000 ${
                             inView ? "opacity-100" : "opacity-0"
                         }`}>
                         {project.title}
                     </h2>
+                    <h3
+                        className={`text-2xl md:text-3xl mb-6 text-center transition-opacity duration-1000 delay-300 ${
+                            inView ? "opacity-100" : "opacity-0"
+                        }`}>
+                        {project.subtitle}
+                    </h3>
+                    <p
+                        className={`text-lg md:text-xl text-center max-w-2xl transition-opacity duration-1000 delay-600 ${
+                            inView ? "opacity-100" : "opacity-0"
+                        }`}>
+                        {project.description}
+                    </p>
                 </div>
             </div>
         </div>

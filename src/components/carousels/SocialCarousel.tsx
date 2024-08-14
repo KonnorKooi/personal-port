@@ -8,7 +8,7 @@ const SocialCard: React.FC<{ social: (typeof socials)[0]; index: number }> = ({
     index,
 }) => {
     const [ref, inView] = useInView({
-        triggerOnce: false,
+        triggerOnce: true,
         threshold: 0.15,
     });
 

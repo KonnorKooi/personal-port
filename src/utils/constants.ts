@@ -1,26 +1,31 @@
 export const largeProjects = [
-    {
+  {
       title: "Konnor Kooi",
+      subtitle: "Computer Science Student",
+      description: "Originally from Olympia, Washington, I'm pursuing my passion for technology and problem-solving through computer science.",
       imageUrl: "/images/wwubg.png",
-    },
-    {
-      title: "Computer Science",
+  },
+  {
+      title: "Academic Focus",
+      subtitle: "BS in Computer Science at WWU",
+      description: "At Western Washington University, I'm developing my skills in software development and algorithm design. A recent project includes co-creating a Schedule Optimizer for WWU students.",
       imageUrl: "/images/Taylor+dock.png",
-    },
-    {
-      title: "WWU",
+  },
+  {
+      title: "Personal Interests",
+      subtitle: "Balancing Tech and Life",
+      description: "Outside of academics, I enjoy playing guitar, creating handcrafted rings, and staying active through basketball and volleyball, both as a player and referee.",
       imageUrl: "/images/wwutrees.png",
-    },
-  ];
-
+  },
+];
 
 export const projects = [
   {
     title: "Personal Portfolio",
     date: "2024",
-    imageUrl: "/images/wwutrees.png",
+    imageUrl: "/images/personalport.png",
     buttonText: "Link",
-    link: "#",
+    link: "https://personal-portfolio-zeta-dun-37.vercel.app/",
   },
   {
     title: "WWU Schedule Optimizer",
@@ -31,7 +36,7 @@ export const projects = [
   },
   {
     title: "WA Care Website",
-    date: "2021",
+    date: "2024",
     imageUrl: "/images/WAcare.png",
     buttonText: "Link",
     link: "https://washington-state-hospital-records.vercel.app/",
@@ -44,19 +49,19 @@ export const projects = [
     link: "https://flowlab.io/game/play/1719733",
   },
   {
-    title: "Project 4",
-    date: "2020",
-    imageUrl: "/images/wwutrees.png",
+    title: "Schedule npm Package",
+    date: "2024",
+    imageUrl: "/images/schedulenpm.png",
     buttonText: "Link",
     link: "#",
   },
-  {
-    title: "Project 5",
-    date: "2019",
-    imageUrl: "/images/wwutrees.png",
-    buttonText: "Link",
-    link: "#",
-  },
+  // {
+  //   title: "Project 5",
+  //   date: "2019",
+  //   imageUrl: "/images/wwutrees.png",
+  //   buttonText: "Link",
+  //   link: "#",
+  // },
 ];
 
 export const socials = [
