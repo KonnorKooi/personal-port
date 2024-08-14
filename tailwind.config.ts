@@ -18,11 +18,6 @@ const config: Config = {
         '128': '32rem',
       },
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         black: '#000000',
         graywhite: '#F7F9FB',
       },
@@ -35,12 +30,6 @@ const config: Config = {
       transitionTimingFunction: {
         'ease-out': 'ease-out',
       },
-    },
-  },
-  variants: {
-    extend: {
-      transform: ['hover', 'focus'],
-      translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     },
   },
 };

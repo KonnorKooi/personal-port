@@ -1,44 +1,39 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { socials } from "../../utils/constants";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
-const SocialCard: React.FC<{
-    social: (typeof socials)[0];
-    index: number;
-}> = ({ social, index }) => {
-    const [ref, isVisible] = useIntersectionObserver({
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
+const SocialCard: React.FC<{ social: (typeof socials)[0]; index: number }> = ({
+    social,
+    index,
+}) => {
+    const [ref, inView] = useInView({
+        triggerOnce: false,
+        threshold: 0.15,
     });
-    const [shouldAnimate, setShouldAnimate] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setShouldAnimate(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <a
+            ref={ref}
             href={social.link}
             target="_blank"
             rel="noopener noreferrer"
-            ref={ref as React.RefObject<HTMLAnchorElement>}
-            className={`block w-80 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 ${
-                shouldAnimate && isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-full"
-            }`}
+            className={`block w-52 height:76 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-1000 ease-in-out transform 
+                ${
+                    inView
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-full"
+                }
+                hover:scale-105
+            `}
             style={{ transitionDelay: `${index * 100}ms` }}>
             <div className="relative w-full h-60">
                 <Image
                     src={social.backgroundImage}
                     alt={social.name}
-                    fill
-                    sizes="100vw"
-                    style={{
-                        objectFit: "cover"
-                    }} />
+                    layout="fill"
+                    objectFit="cover"
+                />
             </div>
             <div className="p-4">
                 <div className="flex items-center">
@@ -47,11 +42,9 @@ const SocialCard: React.FC<{
                             src={social.imageUrl}
                             alt={social.name}
                             className="rounded-full"
-                            fill
-                            sizes="100vw"
-                            style={{
-                                objectFit: "contain"
-                            }} />
+                            layout="fill"
+                            objectFit="contain"
+                        />
                     </div>
                     <h3 className="text-xl font-semibold text-white">
                         {social.name}
@@ -69,7 +62,7 @@ const SocialCarousel: React.FC = () => {
                 <h2 className="text-4xl font-semibold text-white mb-12">
                     Socials
                 </h2>
-                <div className="flex overflow-x-auto space-x-8 pb-8">
+                <div className="flex flex-wrap justify-center gap-8">
                     {socials.map((social, index) => (
                         <SocialCard key={index} social={social} index={index} />
                     ))}

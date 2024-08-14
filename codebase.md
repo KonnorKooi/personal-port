@@ -4,11 +4,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,16 +16,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
-
 ```
 
 # tailwind.config.ts
@@ -55,11 +50,6 @@ const config: Config = {
         '128': '32rem',
       },
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         black: '#000000',
         graywhite: '#F7F9FB',
       },
@@ -72,12 +62,6 @@ const config: Config = {
       transitionTimingFunction: {
         'ease-out': 'ease-out',
       },
-    },
-  },
-  variants: {
-    extend: {
-      transform: ['hover', 'focus'],
-      translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     },
   },
 };
@@ -106,6 +90,7 @@ export default config;
   "name": "Personal-Portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -113,24 +98,16 @@ export default config;
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-checkbox": "^1.0.4",
-    "@radix-ui/react-scroll-area": "^1.0.5",
     "autoprefixer": "^10.4.19",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
     "lucide-react": "^0.394.0",
-    "mini-css-extract-plugin": "^2.9.0",
-    "next": "^14.2.4",
+    "next": "^14.2.5",
     "react": "^18",
-    "react-dom": "^18",
-    "react-papaparse": "^4.4.0",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.14.15",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8.4.38",
@@ -147,7 +124,14 @@ export default config;
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["img.icons8.com"], // Add any other domains you're using
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "img.icons8.com",
+                port: "",
+                pathname: "/**",
+            },
+        ],
     },
 };
 
@@ -282,17 +266,12 @@ next-env.d.ts
 
 ```
 
-# public/vercel.svg
+# .aidigestignore
 
-This is a file of the type: SVG Image
-
-# public/next.svg
-
-This is a file of the type: SVG Image
-
-# src/utils/helpers.ts
-
-```ts
+```
+/.next/_
+/node_modules/_
+/public/\*
 
 ```
 
@@ -400,12 +379,6 @@ export const socials = [
   ];
 ```
 
-# src/types/index.ts
-
-```ts
-
-```
-
 # src/styles/global.css
 
 ```css
@@ -429,7 +402,6 @@ body {
 # src/pages/index.tsx
 
 ```tsx
-import React from "react";
 import {
     Navbar,
     FullPageImages,
@@ -459,30 +431,25 @@ export default Home;
 # src/pages/_document.js
 
 ```js
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document";
 
-class MyDocument extends Document {
-  render() {
+export default function Document() {
     return (
-      <Html>
-        <Head>
-          <link rel="icon" href="/images/favicon.ico" />
-
-          <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
+        <Html lang="en">
+            <Head>
+                <link rel="icon" href="/images/favicon.ico" />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+                    rel="stylesheet"
+                />
+            </Head>
+            <body>
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
     );
-  }
 }
-
-export default MyDocument;
 
 ```
 
@@ -579,70 +546,6 @@ export { default as ProjectCarousel } from './carousels/ProjectCarousel';
 export { default as SocialCarousel } from './carousels/SocialCarousel';
 ```
 
-# public/images/wwutrees.png
-
-This is a binary file of the type: Image
-
-# public/images/wwubg.png
-
-This is a binary file of the type: Image
-
-# public/images/weekly_calendar_map.webp
-
-This is a binary file of the type: Image
-
-# public/images/tiktok.png
-
-This is a binary file of the type: Image
-
-# public/images/scheduleOpt.png
-
-This is a binary file of the type: Image
-
-# public/images/logo.png
-
-This is a binary file of the type: Image
-
-# public/images/linkedin.png
-
-This is a binary file of the type: Image
-
-# public/images/instagram.png
-
-This is a binary file of the type: Image
-
-# public/images/github.png
-
-This is a binary file of the type: Image
-
-# public/images/giraffe.pdf
-
-This is a binary file of the type: PDF
-
-# public/images/giraffe.jpg
-
-This is a binary file of the type: Image
-
-# public/images/favicon.ico
-
-This is a binary file of the type: Binary
-
-# public/images/facebook.png
-
-This is a binary file of the type: Image
-
-# public/images/WAcare.png
-
-This is a binary file of the type: Image
-
-# public/images/Taylor+dock.png
-
-This is a binary file of the type: Image
-
-# public/images/CovidAdventures.png
-
-This is a binary file of the type: Image
-
 # src/components/layout/Navbar.tsx
 
 ```tsx
@@ -735,7 +638,10 @@ const Navbar: React.FC = () => {
                         width={50}
                         height={50}
                         className="h-12 w-12"
-                    />
+                        style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                        }} />
                 </div>
                 <div>
                     <span className="text-white text-xl font-semibold">
@@ -870,7 +776,7 @@ export default FooterKonnor;
 # src/components/carousels/SocialCarousel.tsx
 
 ```tsx
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { socials } from "../../utils/constants";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
@@ -880,15 +786,17 @@ const SocialCard: React.FC<{
     index: number;
 }> = ({ social, index }) => {
     const [ref, isVisible] = useIntersectionObserver({
-        threshold: 0.1,
+        threshold: 0.2,
         rootMargin: "0px 0px -100px 0px",
     });
-    const [shouldAnimate, setShouldAnimate] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setShouldAnimate(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+    React.useEffect(() => {
+        if (isVisible && !hasAnimated) {
+            const timer = setTimeout(() => setHasAnimated(true), 100 * index);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, hasAnimated, index]);
 
     return (
         <a
@@ -896,12 +804,11 @@ const SocialCard: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             ref={ref as React.RefObject<HTMLAnchorElement>}
-            className={`block w-80 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 ${
-                shouldAnimate && isVisible
+            className={`block w-80 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-1000 ease-in-out transform hover:scale-105 ${
+                hasAnimated
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-full"
-            }`}
-            style={{ transitionDelay: `${index * 100}ms` }}>
+            }`}>
             <div className="relative w-full h-60">
                 <Image
                     src={social.backgroundImage}
@@ -916,9 +823,9 @@ const SocialCard: React.FC<{
                         <Image
                             src={social.imageUrl}
                             alt={social.name}
+                            className="rounded-full"
                             layout="fill"
                             objectFit="contain"
-                            className="rounded-full"
                         />
                     </div>
                     <h3 className="text-xl font-semibold text-white">
@@ -954,7 +861,7 @@ export default SocialCarousel;
 # src/components/carousels/ProjectCarousel.tsx
 
 ```tsx
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { projects } from "../../utils/constants";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
@@ -964,15 +871,17 @@ const ProjectCard: React.FC<{
     index: number;
 }> = ({ project, index }) => {
     const [ref, isVisible] = useIntersectionObserver({
-        threshold: 0.1,
+        threshold: 0.2,
         rootMargin: "0px 0px -100px 0px",
     });
-    const [shouldAnimate, setShouldAnimate] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setShouldAnimate(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+    React.useEffect(() => {
+        if (isVisible && !hasAnimated) {
+            const timer = setTimeout(() => setHasAnimated(true), 100 * index);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, hasAnimated, index]);
 
     return (
         <a
@@ -980,12 +889,11 @@ const ProjectCard: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             ref={ref as React.RefObject<HTMLAnchorElement>}
-            className={`block w-80 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 ${
-                shouldAnimate && isVisible
+            className={`block w-80 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-1000 ease-in-out transform hover:scale-105 ${
+                hasAnimated
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-full"
-            }`}
-            style={{ transitionDelay: `${index * 100}ms` }}>
+            }`}>
             <div className="relative w-full h-60">
                 <Image
                     src={project.imageUrl}
@@ -1061,14 +969,16 @@ const FullPageImages: React.FC = () => {
             observerOptions
         );
 
-        sectionRefs.current.forEach((ref) => {
+        const currentRefs = sectionRefs.current;
+
+        currentRefs.forEach((ref) => {
             if (ref) {
                 observer.observe(ref);
             }
         });
 
         return () => {
-            sectionRefs.current.forEach((ref) => {
+            currentRefs.forEach((ref) => {
                 if (ref) {
                     observer.unobserve(ref);
                 }
@@ -1085,15 +995,15 @@ const FullPageImages: React.FC = () => {
                         sectionRefs.current[index] = el;
                     }}
                     className="min-h-screen w-full relative overflow-hidden transform transition-transform duration-1000 ease-out -translate-x-full">
-                    <Link href={project.link}>
+                    <Link href={project.link} passHref>
                         <div className="w-full h-screen relative cursor-pointer">
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                sizes="100vw"
                                 priority={index === 0}
-                                className="transition-transform duration-300 ease-in-out hover:scale-105"
+                                className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
                             />
                             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
                                 <h2 className="text-4xl md:text-6xl text-white p-4 text-center">

@@ -2,20 +2,14 @@ export const largeProjects = [
     {
       title: "Konnor Kooi",
       imageUrl: "/images/wwubg.png",
-      buttonText: "Learn More",
-      link: "https://example.com/large-project2",
     },
     {
       title: "Computer Science",
       imageUrl: "/images/Taylor+dock.png",
-      buttonText: "Learn More",
-      link: "https://example.com/large-project1",
     },
     {
       title: "WWU",
       imageUrl: "/images/wwutrees.png",
-      buttonText: "Learn More",
-      link: "https://example.com/large-project3",
     },
   ];
 
