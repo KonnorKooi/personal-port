@@ -3,7 +3,7 @@ name: Deploy to Apache Server
 on:
   push:
     branches:
-      - main  # or master, depending on your default branch name
+      - main
 
 jobs:
   deploy:
@@ -27,20 +27,9 @@ jobs:
       uses: easingthemes/ssh-deploy@v4.1.8
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rlgoDzvc -i"
-        SOURCE: ".next/"  # Source directory
+        ARGS: "-rlgoDzvc -i --delete"
+        SOURCE: "out/"  # Changed from .next to out for static export
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: "/var/www/konnorkooi.com/_next"  # Remote directory
-        EXCLUDE: "/dist/, /node_modules/, /.git/, /.github/"
-        
-    - name: Copy Static Files
-      uses: easingthemes/ssh-deploy@v4.1.8
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rlgoDzvc -i"
-        SOURCE: "public/"  # Source directory for static files
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: "/var/www/konnorkooi.com/"  # Remote directory
+        TARGET: "/var/www/konnorkooi.com/"  # Deploy to root instead of _next
         EXCLUDE: "/dist/, /node_modules/, /.git/, /.github/"
