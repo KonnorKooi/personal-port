@@ -22,14 +22,14 @@ export const largeProjects = [
 export const projects = [
   {
     title: "Personal Portfolio",
-    date: "2024",
+    date: "2024-Present",
     imageUrl: "/images/personalport.png",
     buttonText: "Link",
     link: "https://konnorkooi.com/",
   },
   {
     title: "WWU Schedule Optimizer",
-    date: "2024",
+    date: "March-Nov2024",
     imageUrl: "/images/scheduleOpt.png",
     buttonText: "Link",
     link: "https://cwooper.me/schedule-optimizer/",
@@ -43,14 +43,14 @@ export const projects = [
   },
   {
     title: "Covid Adventures Game",
-    date: "2020",
+    date: "Feb 2020",
     imageUrl: "/images/CovidAdventures.png",
     buttonText: "Link",
     link: "https://flowlab.io/game/play/1719733",
   },
   {
     title: "Schedule npm Package",
-    date: "2024",
+    date: "July-Sept 2024",
     imageUrl: "/images/schedulenpm.png",
     buttonText: "Link",
     link: "https://www.npmjs.com/package/@konnorkooi/schedule-glance",
