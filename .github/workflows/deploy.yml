@@ -23,23 +23,23 @@ jobs:
     - name: Build Next.js App
       run: npm run build
 
-    # First, remove old files except gaussian-viewer
-    - name: Clean old files
-      uses: easingthemes/ssh-deploy@v4.1.8
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-c --delete"
-        SOURCE: "out/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: "/var/www/konnorkooi.com/"
-        EXCLUDE: "/gaussian-viewer/, /gaussian-viewer/*, /.git/"
-        SCRIPT_BEFORE: |
-          rm -rf /var/www/konnorkooi.com/*
-          mkdir -p /var/www/konnorkooi.com/out
-          touch /var/www/konnorkooi.com/out/.gitkeep
-          
-    # Then deploy new files
+    # First, backup gaussian-viewer and clean everything else
+    - name: Prepare and clean directory
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /var/www/konnorkooi.com
+          # Backup gaussian-viewer
+          mv gaussian-viewer /tmp/
+          # Clean everything else
+          rm -rf *
+          # Restore gaussian-viewer
+          mv /tmp/gaussian-viewer .
+        
+    # Deploy new files
     - name: Deploy to Apache Server
       uses: easingthemes/ssh-deploy@v4.1.8
       env:
@@ -49,10 +49,10 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: "/var/www/konnorkooi.com/"
-        EXCLUDE: "/node_modules/, /.git/, /.github/, /gaussian-viewer/"
+        EXCLUDE: "/gaussian-viewer/"
 
-    # Move files from out directory to root
-    - name: Move files from out directory
+    # Set correct permissions
+    - name: Fix permissions
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.REMOTE_HOST }}
@@ -60,5 +60,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           cd /var/www/konnorkooi.com
-          mv out/* .
-          rm -rf out
+          sudo chown -R konnor:www-data .
+          sudo chmod -R 775 .
