@@ -23,8 +23,8 @@ jobs:
     - name: Build Next.js App
       run: npm run build
 
-    # First, backup gaussian-viewer and clean everything else
-    - name: Prepare and clean directory
+    # Backup gaussian-viewer and clean directory
+    - name: Prepare directory
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.REMOTE_HOST }}
@@ -33,11 +33,11 @@ jobs:
         script: |
           cd /var/www/konnorkooi.com
           # Backup gaussian-viewer
-          mv gaussian-viewer /tmp/
-          # Clean everything else
-          rm -rf *
-          # Restore gaussian-viewer
-          mv /tmp/gaussian-viewer .
+          cp -r gaussian-viewer /tmp/
+          # Remove everything except tmp files
+          find . -maxdepth 1 ! -name 'gaussian-viewer' -exec rm -rf {} +
+          # Restore gaussian-viewer if it was removed
+          [ ! -d "gaussian-viewer" ] && cp -r /tmp/gaussian-viewer .
         
     # Deploy new files
     - name: Deploy to Apache Server
@@ -49,16 +49,4 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: "/var/www/konnorkooi.com/"
-        EXCLUDE: "/gaussian-viewer/"
-
-    # Set correct permissions
-    - name: Fix permissions
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd /var/www/konnorkooi.com
-          sudo chown -R konnor:www-data .
-          sudo chmod -R 775 .
+        EXCLUDE: "/gaussian-viewer/, /gaussian-viewer/*, /tmp/"
