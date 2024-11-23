@@ -25,7 +25,7 @@ export const projects = [
     date: "2024",
     imageUrl: "/images/personalport.png",
     buttonText: "Link",
-    link: "https://personal-portfolio-zeta-dun-37.vercel.app/",
+    link: "https://konnorkooi.com/",
   },
   {
     title: "WWU Schedule Optimizer",
@@ -53,15 +53,15 @@ export const projects = [
     date: "2024",
     imageUrl: "/images/schedulenpm.png",
     buttonText: "Link",
-    link: "#",
+    link: "https://www.npmjs.com/package/@konnorkooi/schedule-glance",
   },
-  // {
-  //   title: "Project 5",
-  //   date: "2019",
-  //   imageUrl: "/images/wwutrees.png",
-  //   buttonText: "Link",
-  //   link: "#",
-  // },
+  {
+    title: "Gaussian Viewer",
+    date: "Nov-Dec 2024",
+    imageUrl: "/images/wwutrees.png",
+    buttonText: "Link",
+    link: "https://konnorkooi.com/gaussian-viewer/",
+  },
 ];
 
 export const socials = [
