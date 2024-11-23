@@ -14,7 +14,6 @@ const Home: React.FC = () => {
                 <ProjectCarousel />
                 <SocialCarousel />
                 <FullPageImages />
-                
             </main>
             <Footer />
         </div>
