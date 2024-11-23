@@ -58,7 +58,7 @@ export const projects = [
   {
     title: "Gaussian Viewer",
     date: "Nov-Dec 2024",
-    imageUrl: "/images/wwutrees.png",
+    imageUrl: "/images/gaussian-viewer.png",
     buttonText: "Link",
     link: "https://konnorkooi.com/gaussian-viewer/",
   },
