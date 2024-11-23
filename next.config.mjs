@@ -1,15 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'export',
     images: {
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "img.icons8.com",
-                port: "",
-                pathname: "/**",
-            },
-        ],
+      unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "img.icons8.com",
+          port: "",
+          pathname: "/**",
+        },
+      ],
     },
-};
-
-export default nextConfig;
+  };
+  
+  module.exports = nextConfig;
