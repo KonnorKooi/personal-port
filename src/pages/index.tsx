@@ -11,9 +11,10 @@ const Home: React.FC = () => {
         <div className="bg-black text-white">
             <Navbar />
             <main>
-                <FullPageImages />
                 <ProjectCarousel />
                 <SocialCarousel />
+                <FullPageImages />
+                
             </main>
             <Footer />
         </div>
