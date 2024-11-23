@@ -36,7 +36,7 @@ export const projects = [
   },
   {
     title: "WA Care Website",
-    date: "2024",
+    date: "June-Sept 2024",
     imageUrl: "/images/WAcare.png",
     buttonText: "Link",
     link: "https://washington-state-hospital-records.vercel.app/",
