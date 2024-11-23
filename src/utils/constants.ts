@@ -49,7 +49,7 @@ export const projects = [
     link: "https://flowlab.io/game/play/1719733",
   },
   {
-    title: "Schedule npm Package",
+    title: "Schedule NPM Package",
     date: "July-Sept 2024",
     imageUrl: "/images/schedulenpm.png",
     buttonText: "Link",
