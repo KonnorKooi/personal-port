@@ -22,17 +22,43 @@ jobs:
         
     - name: Build Next.js App
       run: npm run build
-        
-    - name: List output directory
-      run: ls -la
-        
+
+    # First, remove old files except gaussian-viewer
+    - name: Clean old files
+      uses: easingthemes/ssh-deploy@v4.1.8
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-c --delete"
+        SOURCE: "out/"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: "/var/www/konnorkooi.com/"
+        EXCLUDE: "/gaussian-viewer/, /gaussian-viewer/*, /.git/"
+        SCRIPT_BEFORE: |
+          rm -rf /var/www/konnorkooi.com/*
+          mkdir -p /var/www/konnorkooi.com/out
+          touch /var/www/konnorkooi.com/out/.gitkeep
+          
+    # Then deploy new files
     - name: Deploy to Apache Server
       uses: easingthemes/ssh-deploy@v4.1.8
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i"
-        SOURCE: "./"
+        SOURCE: "out/"
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: "/var/www/konnorkooi.com/"
-        EXCLUDE: "/node_modules/, /.git/, /.github/, /src/, /pages/, /styles/, /components/, /public/"
+        EXCLUDE: "/node_modules/, /.git/, /.github/, /gaussian-viewer/"
+
+    # Move files from out directory to root
+    - name: Move files from out directory
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /var/www/konnorkooi.com
+          mv out/* .
+          rm -rf out
