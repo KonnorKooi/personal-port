@@ -1,49 +1,41 @@
 name: Deploy to Apache Server
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        
-    - name: Install Dependencies
-      run: npm install
-        
-    - name: Build Next.js App
-      run: npm run build
-
-    # Clean directory while preserving gaussian-viewer
-    - name: Prepare directory
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd /var/www/konnorkooi.com
-          # Remove everything except gaussian-viewer directory
-          shopt -s extglob
-          rm -rf !(gaussian-viewer)
-        
-    # Deploy new files
-    - name: Deploy to Apache Server
-      uses: easingthemes/ssh-deploy@v4.1.8
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rlgoDzvc -i"
-        SOURCE: "out/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: "/var/www/konnorkooi.com/"
-        EXCLUDE: "/gaussian-viewer/, /gaussian-viewer/*"
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Next.js App
+        run: npm run build
+      # Clean directory while preserving gaussian-viewer and quiz-app
+      - name: Prepare directory
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/konnorkooi.com
+            # Remove everything except gaussian-viewer and quiz-app directories
+            shopt -s extglob
+            rm -rf !(gaussian-viewer|quiz-app)
+      # Deploy new files
+      - name: Deploy to Apache Server
+        uses: easingthemes/ssh-deploy@v4.1.8
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "out/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: "/var/www/konnorkooi.com/"
+          EXCLUDE: "/gaussian-viewer/, /gaussian-viewer/*, /quiz-app/, /quiz-app/*"
