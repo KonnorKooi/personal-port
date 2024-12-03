@@ -62,6 +62,13 @@ export const projects = [
     buttonText: "Link",
     link: "https://konnorkooi.com/gaussian-viewer/",
   },
+  {
+    title: "Json Quiz App",
+    date: "Nov-Dec 2024",
+    imageUrl: "/images/quiz-app.png",
+    buttonText: "Link",
+    link: "https://konnorkooi.com/quiz-app/",
+  },
 ];
 
 export const socials = [
