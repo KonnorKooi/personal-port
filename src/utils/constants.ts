@@ -21,32 +21,11 @@ export const largeProjects = [
 
 export const projects = [
   {
-    title: "Personal Portfolio",
-    date: "2024-Present",
-    imageUrl: "/images/personalport.png",
-    buttonText: "Link",
-    link: "https://konnorkooi.com/",
-  },
-  {
     title: "WWU Schedule Optimizer",
     date: "March-Nov2024",
     imageUrl: "/images/scheduleOpt.png",
     buttonText: "Link",
     link: "https://cwooper.me/schedule-optimizer/",
-  },
-  {
-    title: "WA Care Website",
-    date: "June-Sept 2024",
-    imageUrl: "/images/WAcare.png",
-    buttonText: "Link",
-    link: "https://washington-state-hospital-records.vercel.app/",
-  },
-  {
-    title: "Covid Adventures Game",
-    date: "Feb 2020",
-    imageUrl: "/images/CovidAdventures.png",
-    buttonText: "Link",
-    link: "https://flowlab.io/game/play/1719733",
   },
   {
     title: "Schedule NPM Package",
@@ -69,6 +48,28 @@ export const projects = [
     buttonText: "Link",
     link: "https://konnorkooi.com/quiz-app/",
   },
+  {
+    title: "Personal Portfolio",
+    date: "2024-Present",
+    imageUrl: "/images/personalport.png",
+    buttonText: "Link",
+    link: "https://konnorkooi.com/",
+  },
+  {
+    title: "WA Care Website",
+    date: "June-Sept 2024",
+    imageUrl: "/images/WAcare.png",
+    buttonText: "Link",
+    link: "https://washington-state-hospital-records.vercel.app/",
+  },
+  {
+    title: "Covid Adventures Game",
+    date: "Feb 2020",
+    imageUrl: "/images/CovidAdventures.png",
+    buttonText: "Link",
+    link: "https://flowlab.io/game/play/1719733",
+  },
+  
 ];
 
 export const socials = [
