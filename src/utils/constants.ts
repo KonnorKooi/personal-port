@@ -28,18 +28,18 @@ export const projects = [
     link: "https://cwooper.me/schedule-optimizer/",
   },
   {
-    title: "Schedule NPM Package",
-    date: "July-Sept 2024",
-    imageUrl: "/images/schedulenpm.png",
-    buttonText: "Link",
-    link: "https://www.npmjs.com/package/@konnorkooi/schedule-glance",
-  },
-  {
     title: "Gaussian Viewer",
     date: "Nov-Dec 2024",
     imageUrl: "/images/gausian-vango.png",
     buttonText: "Link",
     link: "https://konnorkooi.com/gaussian-viewer/",
+  },
+  {
+    title: "Schedule NPM Package",
+    date: "July-Sept 2024",
+    imageUrl: "/images/schedulenpm.png",
+    buttonText: "Link",
+    link: "https://www.npmjs.com/package/@konnorkooi/schedule-glance",
   },
   {
     title: "Json Quiz App",
