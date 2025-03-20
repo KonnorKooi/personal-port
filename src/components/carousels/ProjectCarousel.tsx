@@ -4,13 +4,21 @@ import { useInView } from "react-intersection-observer";
 import { projects } from "../../utils/constants";
 import { useTheme } from "../ThemeProvider";
 
-const ProjectCard: React.FC<{
-    project: (typeof projects)[0];
+interface ProjectCardProps {
+    project: {
+        title: string;
+        date: string;
+        imageUrl: string;
+        buttonText: string;
+        link: string;
+    };
     index: number;
-}> = ({ project, index }) => {
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
     const { theme } = useTheme();
     const [ref, inView] = useInView({
-        triggerOnce: false,
+        triggerOnce: true, // This ensures the animation only happens once
         threshold: 0.04,
         rootMargin: "-50px 0px -50px 0px",
     });
@@ -58,6 +66,7 @@ const ProjectCard: React.FC<{
                     fill
                     sizes="(max-width: 640px) 256px, 320px"
                     style={{ objectFit: "cover" }}
+                    priority={index < 3} // Prioritize the first 3 images
                 />
             </div>
             <div className="p-4">
@@ -93,4 +102,4 @@ const ProjectCarousel: React.FC = () => {
     );
 };
 
-export default ProjectCarousel;
+export default ProjectCarousel;1
