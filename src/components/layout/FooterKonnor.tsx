@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const FooterKonnor: React.FC = () => {
+    const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+    useEffect(() => {
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+        if (savedTheme) {
+            setTheme(savedTheme);
+        }
+
+        // Listen for theme changes
+        const handleStorageChange = () => {
+            const currentTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+            if (currentTheme && currentTheme !== theme) {
+                setTheme(currentTheme);
+            }
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+        
+        // Also check periodically for theme changes
+        const interval = setInterval(() => {
+            const currentTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+            if (currentTheme && currentTheme !== theme) {
+                setTheme(currentTheme);
+            }
+        }, 1000);
+
+        return () => {
+            window.removeEventListener("storage", handleStorageChange);
+            clearInterval(interval);
+        };
+    }, [theme]);
+
     return (
-        <footer className="bg-black text-white py-8 px-6">
+        <footer className={`${theme === "dark" ? "bg-black" : "bg-gray-100"} ${theme === "dark" ? "text-white" : "text-black"} py-8 px-6 transition-colors duration-300`}>
             <div className="container mx-auto flex flex-wrap justify-between items-center">
                 <div className="flex items-center mb-4 md:mb-0">
                     <svg
@@ -25,7 +58,7 @@ const FooterKonnor: React.FC = () => {
                         href="https://github.com/KonnorKooi"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300">
+                        className={`${theme === "dark" ? "hover:text-gray-300" : "hover:text-gray-600"}`}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
@@ -39,7 +72,7 @@ const FooterKonnor: React.FC = () => {
                         href="https://www.linkedin.com/in/konnor-kooi-93b83a281/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300">
+                        className={`${theme === "dark" ? "hover:text-gray-300" : "hover:text-gray-600"}`}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -53,7 +86,7 @@ const FooterKonnor: React.FC = () => {
                         href="https://www.instagram.com/konnorkooi/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300">
+                        className={`${theme === "dark" ? "hover:text-gray-300" : "hover:text-gray-600"}`}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"

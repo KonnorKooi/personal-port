@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { projects } from "../../utils/constants";
+import { useTheme } from "../ThemeProvider";
 
 const ProjectCard: React.FC<{
     project: (typeof projects)[0];
     index: number;
 }> = ({ project, index }) => {
+    const { theme } = useTheme();
     const [ref, inView] = useInView({
         triggerOnce: false,
         threshold: 0.04,
@@ -36,8 +38,10 @@ const ProjectCard: React.FC<{
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`block w-80 sm:w-80 w-64 h-80 sm:h-84 bg-gray-800 rounded-lg shadow-lg overflow-hidden 
-                transition-all sm:duration-700 duration-300 ease-in-out transform 
+            className={`block w-80 sm:w-80 w-64 h-68 sm:h-84
+                ${theme === "dark" ? "bg-gray-800" : "bg-gray-200"}
+                rounded-lg shadow-lg overflow-hidden
+                transition-all sm:duration-700 duration-300 ease-in-out transform
                 ${
                     isVisible
                         ? "opacity-100 translate-x-0"
@@ -47,7 +51,7 @@ const ProjectCard: React.FC<{
                 ${!animationComplete ? "pointer-events-none" : ""}
             `}
             style={{ transitionDelay: `${index * 25}ms` }}>
-            <div className="relative w-full h-48 sm:h-60">
+            <div className="relative w-full h-40 sm:h-60">
                 <Image
                     src={project.imageUrl}
                     alt={project.title}
@@ -57,20 +61,22 @@ const ProjectCard: React.FC<{
                 />
             </div>
             <div className="p-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-white">
+                <h3 className={`text-lg sm:text-xl font-semibold ${theme === "dark" ? "text-white" : "text-black"}`}>
                     {project.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-400 mt-2">{project.date}</p>
+                <p className={`text-xs sm:text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"} mt-2`}>{project.date}</p>
             </div>
         </a>
     );
 };
 
 const ProjectCarousel: React.FC = () => {
+    const { theme } = useTheme();
+
     return (
-        <div className="w-full bg-black py-8 sm:py-12">
+        <div className={`w-full ${theme === "dark" ? "bg-black" : "bg-white"} py-8 sm:py-12 transition-colors duration-300`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl sm:text-4xl font-semibold text-white mb-8 sm:mb-12">
+                <h2 className={`text-3xl sm:text-4xl font-semibold ${theme === "dark" ? "text-white" : "text-black"} mb-8 sm:mb-12`}>
                     Projects
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4 sm:gap-8">

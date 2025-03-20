@@ -1,6 +1,7 @@
 // Layout
 export { default as Navbar } from './layout/Navbar';
 export { default as Footer } from './layout/FooterKonnor';
+export { ThemeProvider, useTheme } from './ThemeProvider';
 
 // Carousels
 export { default as FullPageImages} from './carousels/FullPageImages';

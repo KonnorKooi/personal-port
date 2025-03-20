@@ -9,6 +9,27 @@
 /* Apply custom styles */
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #000000; /* Apply bg-black */
-  color: #ffffff; /* Apply text-white */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transition for all elements */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Default dark theme */
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme */
+:root.light {
+  color-scheme: light;
+}
+
+/* Prevent transition on page load */
+.no-transition {
+  transition: none !important;
 }
