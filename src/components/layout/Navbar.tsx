@@ -68,7 +68,6 @@ const Navbar: React.FC = () => {
                     </h2>
                     <p className="text-sm mb-1">This project is built using:</p>
                     <ul className="list-disc list-inside text-sm mb-2">
-                        <li>React</li>
                         <li>Next.js</li>
                         <li>Tailwind CSS</li>
                     </ul>
