@@ -31,8 +31,9 @@ const SocialCard: React.FC<{ social: (typeof socials)[0]; index: number }> = ({
                 <Image
                     src={social.backgroundImage}
                     alt={social.name}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: "cover" }}
                 />
             </div>
             <div className="p-4">
@@ -42,8 +43,9 @@ const SocialCard: React.FC<{ social: (typeof socials)[0]; index: number }> = ({
                             src={social.imageUrl}
                             alt={social.name}
                             className="rounded-full"
-                            layout="fill"
-                            objectFit="contain"
+                            fill
+                            sizes="100vw"
+                            style={{ objectFit: "contain" }}
                         />
                     </div>
                     <h3 className="text-xl font-semibold text-white">

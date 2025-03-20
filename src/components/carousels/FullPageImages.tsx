@@ -29,6 +29,7 @@ const FullPageSection: React.FC<{ project: (typeof largeProjects)[0] }> = ({
                     alt={project.title}
                     fill
                     sizes="100vw"
+                    style={{ objectFit: "cover" }}
                     className="object-cover"
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white p-8">

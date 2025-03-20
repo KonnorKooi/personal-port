@@ -75,31 +75,31 @@ export const projects = [
 export const socials = [
     {
       name: "LinkedIn",
-      imageUrl: "https://img.icons8.com/color/48/000000/linkedin_optimized.jpg",
+      imageUrl: "https://img.icons8.com/color/48/000000/linkedin.png",
       link: "https://www.linkedin.com/in/konnor-kooi-93b83a281/",
       backgroundImage: "/images/linkedin_optimized.jpg",
     },
     {
       name: "GitHub",
-      imageUrl: "https://img.icons8.com/material-rounded/48/000000/github_optimized.jpg",
+      imageUrl: "https://img.icons8.com/material-rounded/48/000000/github.png",
       link: "https://github.com/KonnorKooi",
       backgroundImage: "/images/github_optimized.jpg",
     },
     {
       name: "Facebook",
-      imageUrl: "https://img.icons8.com/color/48/000000/facebook-new_optimized.jpg",
+      imageUrl: "https://img.icons8.com/color/48/000000/facebook-new.png",
       link: "https://www.facebook.com/konnor.kooi.731/",
       backgroundImage: "/images/facebook_optimized.jpg",
     },
     {
       name: "Instagram",
-      imageUrl: "https://img.icons8.com/color/48/000000/instagram-new_optimized.jpg",
+      imageUrl: "https://img.icons8.com/color/48/000000/instagram-new.png",
       link: "https://www.instagram.com/konnorkooi/",
       backgroundImage: "/images/instagram_optimized.jpg",
     },
     {
       name: "Tiktok",
-      imageUrl: "https://img.icons8.com/color/48/000000/tiktok_optimized.jpg",
+      imageUrl: "https://img.icons8.com/color/48/000000/tiktok.png",
       link: "https://www.tiktok.com/@konnorkooi32",
       backgroundImage: "/images/tiktok_optimized.jpg",
     },

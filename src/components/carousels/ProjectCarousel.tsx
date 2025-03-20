@@ -42,8 +42,9 @@ const ProjectCard: React.FC<{
                 <Image
                     src={project.imageUrl}
                     alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: "cover" }}
                 />
             </div>
             <div className="p-4">
