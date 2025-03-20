@@ -7,3 +7,4 @@ export { ThemeProvider, useTheme } from './ThemeProvider';
 export { default as FullPageImages} from './carousels/FullPageImages';
 export { default as ProjectCarousel } from './carousels/ProjectCarousel';
 export { default as SocialCarousel } from './carousels/SocialCarousel';
+export { default as ResumeCarousel } from './carousels/ResumeCarousel';

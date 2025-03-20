@@ -62,13 +62,13 @@ export const projects = [
     buttonText: "Link",
     link: "https://washington-state-hospital-records.vercel.app/",
   },
-  {
-    title: "Covid Adventures Game",
-    date: "Feb 2020",
-    imageUrl: "/images/CovidAdventures_optimized.jpg",
-    buttonText: "Link",
-    link: "https://flowlab.io/game/play/1719733",
-  },
+  // {
+  //   title: "Covid Adventures Game",
+  //   date: "Feb 2020",
+  //   imageUrl: "/images/CovidAdventures_optimized.jpg",
+  //   buttonText: "Link",
+  //   link: "https://flowlab.io/game/play/1719733",
+  // },
   
 ];
 

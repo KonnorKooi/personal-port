@@ -1,3 +1,4 @@
+// src/pages/index.tsx
 import React, { useState, useEffect } from "react";
 import {
     Navbar,
@@ -6,6 +7,7 @@ import {
     SocialCarousel,
     Footer,
 } from "../components";
+import ResumeCarousel from "../components/carousels/ResumeCarousel";
 
 const Home: React.FC = () => {
     const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -46,6 +48,7 @@ const Home: React.FC = () => {
             <Navbar />
             <main>
                 <ProjectCarousel />
+                <ResumeCarousel /> {/* Added Resume Carousel here, above Socials */}
                 <SocialCarousel />
                 <FullPageImages />
             </main>
