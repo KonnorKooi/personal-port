@@ -74,13 +74,15 @@ function installEdgeDriver() {
   }
 }
 
+
+
+// Install drivers based on command
+const browser = process.argv[2] || 'all';
+
 // And call it in your command handler:
 if (browser === 'all' || browser === 'edge') {
   installEdgeDriver();
 }
-
-// Install drivers based on command
-const browser = process.argv[2] || 'all';
 
 if (browser === 'all' || browser === 'chrome') {
   installChromeDriver();
