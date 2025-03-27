@@ -12,7 +12,8 @@
   "install:drivers": "node scripts/install-drivers.js",
   "test:chrome": "cross-env WEBDRIVER_BROWSER=chrome jest --testPathPattern=selenium",
   "test:firefox": "cross-env WEBDRIVER_BROWSER=firefox jest --testPathPattern=selenium",
-  "test:all": "npm run test:chrome && npm run test:firefox"
+  "test:all": "npm run test:chrome && npm run test:firefox && npm run test:edge",
+  "test:edge": "cross-env WEBDRIVER_BROWSER=edge jest --testPathPattern=selenium"
 },  
   "dependencies": {
     "autoprefixer": "^10.4.19",

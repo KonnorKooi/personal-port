@@ -162,8 +162,10 @@ afterAll(async () => {
       // On Windows, process.kill() behaves differently
       if (process.platform === 'win32') {
         global.nextServer.kill();
-      } else {
+      } else if (global.nextServer.pid !== undefined) {
         process.kill(-global.nextServer.pid);
+      } else {
+        global.debug('Cannot stop server: Process ID is undefined');
       }
       global.debug('Next.js server stopped');
     } catch (error) {

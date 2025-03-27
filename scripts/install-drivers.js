@@ -61,6 +61,24 @@ function installGeckodriver() {
   }
 }
 
+// Add this function:
+function installEdgeDriver() {
+  console.log('Installing Microsoft Edge WebDriver...');
+  try {
+    // Edge WebDriver is handled via MSEDGEDRIVER_VERSION environment variable
+    // or automatically by selenium-webdriver
+    console.log('Edge WebDriver will be managed by selenium-webdriver');
+    console.log('Make sure Microsoft Edge is installed on your system');
+  } catch (error) {
+    console.error('Error setting up Edge WebDriver:', error);
+  }
+}
+
+// And call it in your command handler:
+if (browser === 'all' || browser === 'edge') {
+  installEdgeDriver();
+}
+
 // Install drivers based on command
 const browser = process.argv[2] || 'all';
 
