@@ -4,11 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "setup:xvfb": "chmod +x selenium/setup-xvfb.sh && ./selenium/setup-xvfb.sh",
+  "install:drivers": "node scripts/install-drivers.js",
+  "test:chrome": "cross-env WEBDRIVER_BROWSER=chrome jest --testPathPattern=selenium",
+  "test:firefox": "cross-env WEBDRIVER_BROWSER=firefox jest --testPathPattern=selenium",
+  "test:all": "npm run test:chrome && npm run test:firefox"
+},  
   "dependencies": {
     "autoprefixer": "^10.4.19",
     "lucide-react": "^0.394.0",
@@ -18,13 +23,22 @@
     "react-intersection-observer": "^9.13.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/node": "^20.14.15",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/selenium-webdriver": "^4.1.28",
+    "chromedriver": "^133.0.3",
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "geckodriver": "^5.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "postcss": "^8.4.38",
+    "selenium-webdriver": "^4.30.0",
     "tailwindcss": "^3.4.4",
+    "ts-jest": "^29.3.0",
     "typescript": "^5"
   }
 }

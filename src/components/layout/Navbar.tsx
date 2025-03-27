@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
                         alt="Logo"
                         width={48}
                         height={48}
-                        priority // Added priority for LCP optimization
+                        priority 
                         className="object-contain"
                     />
                 </div>

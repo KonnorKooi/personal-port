@@ -36,3 +36,9 @@ yarn-error.log*
 next-env.d.ts
 
 ./vscode
+
+#screen shot ignore
+selenium/screenshots/*
+selenium/screenshots/
+selenium/debug/*
+selenium/debug/
