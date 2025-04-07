@@ -76,6 +76,8 @@ const Navbar: React.FC = () => {
             {showHelp && (
                 <div
                     ref={helpBoxRef}
+                    id="helpBox"
+                    
                     className={`absolute top-16 right-6 w-64 p-4 ${
                         theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
                     } rounded-lg shadow-lg z-50`}>

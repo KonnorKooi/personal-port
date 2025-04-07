@@ -43,6 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
     return (
         <a
             ref={ref}
+            data-testid="project-card"
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
@@ -102,4 +103,4 @@ const ProjectCarousel: React.FC = () => {
     );
 };
 
-export default ProjectCarousel;1
+export default ProjectCarousel;
