@@ -63,7 +63,7 @@ describe('<Navbar />', () => {
     cy.get('@themeToggle').find('svg').should('exist');
     
     // Store initial theme
-    let initialTheme;
+    let initialTheme: 'dark' | 'light';
     cy.document().then((doc) => {
       initialTheme = doc.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });

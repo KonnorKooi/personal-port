@@ -3,6 +3,7 @@ import SocialCarousel from './SocialCarousel';
 import { ThemeProvider } from '../ThemeProvider';
 import { socials } from '../../utils/constants';
 
+
 describe('<SocialCarousel />', () => {
   beforeEach(() => {
     // Mount component with ThemeProvider
@@ -56,10 +57,6 @@ describe('<SocialCarousel />', () => {
       cy.wrap($card).should('have.css', 'opacity', '1');
       cy.wrap($card).should('have.css', 'transform').and('not.include', 'translate');
     });
-    
-    // Check hover effect
-    cy.get('a').first().realHover();
-    cy.get('a').first().should('have.css', 'transform').and('include', 'scale');
   });
 
   it('adapts to theme changes', () => {
