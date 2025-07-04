@@ -10,6 +10,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  padding-top: 64px; /* Account for fixed navbar height */
 }
 
 /* Theme transition for all elements */

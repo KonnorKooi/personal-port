@@ -6,6 +6,7 @@ import { useTheme } from "../ThemeProvider";
 const Navbar: React.FC = () => {
     const { theme, toggleTheme } = useTheme();
     const [showHelp, setShowHelp] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const helpBoxRef = useRef<HTMLDivElement>(null);
     const helpButtonRef = useRef<HTMLButtonElement>(null);
     const lastUpdated = new Date().toLocaleDateString();
@@ -21,8 +22,18 @@ const Navbar: React.FC = () => {
             }
         };
 
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            setIsScrolled(scrollTop > 50);
+        };
+
         document.addEventListener("click", handleOutsideClick);
-        return () => document.removeEventListener("click", handleOutsideClick);
+        window.addEventListener("scroll", handleScroll);
+        
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, [showHelp]);
 
     const handleHelpClick = () => {
@@ -30,21 +41,44 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className={`${theme === "dark" ? "bg-black" : "bg-white"} py-4 px-6 relative transition-colors duration-300`}>
+        <nav className={`${theme === "dark" ? "bg-black" : "bg-white"} py-2 px-6 fixed top-0 left-0 right-0 z-50 transition-colors duration-300`}>
             <div className="flex justify-between items-center">
-                <div className="h-12 w-12 relative">
-                    <Image
-                        src="/images/logo.png"
-                        alt="Logo"
-                        width={48}
-                        height={48}
-                        priority 
-                        className="object-contain"
-                    />
+                <div className="flex items-center">
+                    <div className={`font-bold transition-all duration-500 ease-in-out flex items-center ${
+                        theme === "dark" ? "text-white" : "text-black"
+                    } ${isScrolled ? "text-2xl" : "text-2xl"}`}>
+                        <div className="relative">
+                            <span className={`transition-opacity duration-300 ease-in-out ${
+                                isScrolled ? "opacity-0" : "opacity-100"
+                            }`}>
+                                K
+                            </span>
+                            <span className={`absolute top-1/2 w-1 bg-current transition-all duration-10 ease-in-out transform -translate-y-1/2 ${
+                                isScrolled ? "opacity-100" : "opacity-0"
+                            }`} style={{ height: '17px', left: '2px' }}>
+                            </span>
+                        </div>
+                        <span className={`inline-block transition-all duration-500 ease-in-out overflow-hidden ${
+                            isScrolled 
+                                ? "max-w-0 opacity-0 transform scale-x-0" 
+                                : "max-w-[200px] opacity-100 transform scale-x-100"
+                        }`} style={{ transformOrigin: "left center" }}>
+                            onnor
+                        </span>
+                        <span className={`transition-all duration-200 ease-in-out ${
+                            isScrolled ? "opacity-100" : "ml-2 opacity-100"
+                        }`} style={isScrolled ? { marginLeft: '-12px' } : { left: '-2px' }}>
+                            K
+                        </span>
+                        <span className={`inline-block transition-all duration-500 ease-in-out overflow-hidden ${
+                            isScrolled 
+                                ? "max-w-0 opacity-0 transform scale-x-0" 
+                                : "max-w-[200px] opacity-100 transform scale-x-100"
+                        }`} style={{ transformOrigin: "left center" }}>
+                            ooi
+                        </span>
+                    </div>
                 </div>
-                <span className={`${theme === "dark" ? "text-white" : "text-black"} text-xl font-semibold`}>
-                    Konnor Kooi
-                </span>
                 <div className="flex items-center space-x-2">
                     <button
                         onClick={toggleTheme}

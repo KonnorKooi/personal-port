@@ -12,7 +12,6 @@ export default {
   },
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testMatch: ["**/selenium/**/*.test.(ts|tsx|js)"],
-  setupFilesAfterEnv: ['./selenium/setup.ts'],
+  testMatch: ["**/__tests__/**/*.(test|spec).(ts|tsx|js)", "**/*.(test|spec).(ts|tsx|js)"],
   testTimeout: 30000
 };

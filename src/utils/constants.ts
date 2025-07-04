@@ -22,7 +22,7 @@ export const largeProjects = [
 export const projects = [
   {
     title: "WWU Schedule Optimizer",
-    date: "March-Nov2024",
+    date: "March-Nov 2024",
     imageUrl: "/images/scheduleOpt_optimized.jpg",
     buttonText: "Link",
     link: "https://cwooper.me/schedule-optimizer/",
@@ -48,13 +48,13 @@ export const projects = [
     buttonText: "Link",
     link: "https://konnorkooi.com/quiz-app/",
   },
-  {
-    title: "Personal Portfolio",
-    date: "2024-Present",
-    imageUrl: "/images/personalport_optimized.jpg",
-    buttonText: "Link",
-    link: "https://konnorkooi.com/",
-  },
+  // {
+  //   title: "Personal Portfolio",
+  //   date: "2024-Present",
+  //   imageUrl: "/images/personalport_optimized.jpg",
+  //   buttonText: "Link",
+  //   link: "https://konnorkooi.com/",
+  // },
   {
     title: "WA Care Website",
     date: "June-Sept 2024",
