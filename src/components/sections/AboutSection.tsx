@@ -45,8 +45,8 @@ const AboutSection: React.FC = () => {
         <div 
           className={`absolute inset-0 transition-all duration-300 ${
             theme === "dark" 
-              ? "bg-black bg-opacity-40" 
-              : "bg-white bg-opacity-50"
+              ? "bg-black bg-opacity-30" 
+              : "bg-white bg-opacity-20"
           }`} 
         />
       </div>
