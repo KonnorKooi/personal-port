@@ -55,13 +55,13 @@ export const projects = [
   //   buttonText: "Link",
   //   link: "https://konnorkooi.com/",
   // },
-  {
-    title: "WA Care Website",
-    date: "June-Sept 2024",
-    imageUrl: "/images/WAcare_optimized.jpg",
-    buttonText: "Link",
-    link: "https://washington-state-hospital-records.vercel.app/",
-  },
+  // {
+  //   title: "WA Care Website",
+  //   date: "June-Sept 2024",
+  //   imageUrl: "/images/WAcare_optimized.jpg",
+  //   buttonText: "Link",
+  //   link: "https://washington-state-hospital-records.vercel.app/",
+  // },
   // {
   //   title: "Covid Adventures Game",
   //   date: "Feb 2020",

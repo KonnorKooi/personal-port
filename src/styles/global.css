@@ -7,10 +7,22 @@
 @tailwind utilities;
 
 /* Apply custom styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
-  padding-top: 64px; /* Account for fixed navbar height */
+  padding-top: 56px; /* Account for fixed navbar height on mobile */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Adjust navbar padding for larger screens */
+@media (min-width: 768px) {
+  body {
+    padding-top: 64px; /* Larger navbar on desktop */
+  }
 }
 
 /* Theme transition for all elements */
@@ -33,4 +45,88 @@ body {
 /* Prevent transition on page load */
 .no-transition {
   transition: none !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8);
+}
+
+/* Dark theme scrollbar */
+:root.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+:root.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.8);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Smooth hover transitions */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  .mobile-menu {
+    position: fixed;
+    top: 56px; /* Match mobile navbar height */
+    left: 0;
+    right: 0;
+    background: inherit;
+    border-top: 1px solid rgba(156, 163, 175, 0.2);
+    z-index: 40;
+  }
+  
+  /* Prevent layout shift on mobile */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Improve touch targets on mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }

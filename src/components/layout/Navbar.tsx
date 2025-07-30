@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../ThemeProvider";
 
 const Navbar: React.FC = () => {
     const { theme, toggleTheme } = useTheme();
     const [showHelp, setShowHelp] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const helpBoxRef = useRef<HTMLDivElement>(null);
     const helpButtonRef = useRef<HTMLButtonElement>(null);
     const lastUpdated = new Date().toLocaleDateString();
@@ -40,13 +41,22 @@ const Navbar: React.FC = () => {
         setShowHelp(!showHelp);
     };
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setMobileMenuOpen(false); // Close mobile menu after navigation
+        }
+    };
+
     return (
-        <nav className={`${theme === "dark" ? "bg-black" : "bg-white"} py-2 px-6 fixed top-0 left-0 right-0 z-50 transition-colors duration-300`}>
-            <div className="flex justify-between items-center">
-                <div className="flex items-center">
+        <nav className={`${theme === "dark" ? "bg-black" : "bg-white"} py-2 px-4 md:px-6 fixed top-0 left-0 right-0 z-50 transition-colors duration-300`}>
+            <div className="flex items-center w-full relative">
+                {/* Logo - Fixed width to prevent shifting */}
+                <div className="flex items-center" style={{ width: '140px' }}>
                     <div className={`font-bold transition-all duration-500 ease-in-out flex items-center ${
                         theme === "dark" ? "text-white" : "text-black"
-                    } ${isScrolled ? "text-2xl" : "text-2xl"}`}>
+                    } ${isScrolled ? "text-xl md:text-2xl" : "text-xl md:text-2xl"}`}>
                         <div className="relative">
                             <span className={`transition-opacity duration-300 ease-in-out ${
                                 isScrolled ? "opacity-0" : "opacity-100"
@@ -55,7 +65,7 @@ const Navbar: React.FC = () => {
                             </span>
                             <span className={`absolute top-1/2 w-1 bg-current transition-all duration-10 ease-in-out transform -translate-y-1/2 ${
                                 isScrolled ? "opacity-100" : "opacity-0"
-                            }`} style={{ height: '17px', left: '2px' }}>
+                            } h-[14px] md:h-[17px] left-[-2px] md:left-[2px]`}>
                             </span>
                         </div>
                         <span className={`inline-block transition-all duration-500 ease-in-out overflow-hidden ${
@@ -79,7 +89,41 @@ const Navbar: React.FC = () => {
                         </span>
                     </div>
                 </div>
-                <div className="flex items-center space-x-2">
+                
+                {/* Center Navigation - Absolutely positioned to stay centered */}
+                <div className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
+                    <button
+                        onClick={() => scrollToSection('about')}
+                        className={`transition-colors hover:opacity-70 ${
+                            theme === "dark" ? "text-white" : "text-black"
+                        }`}>
+                        About
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('projects')}
+                        className={`transition-colors hover:opacity-70 ${
+                            theme === "dark" ? "text-white" : "text-black"
+                        }`}>
+                        Projects
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('skills')}
+                        className={`transition-colors hover:opacity-70 ${
+                            theme === "dark" ? "text-white" : "text-black"
+                        }`}>
+                        Skills
+                    </button>
+                    <button
+                        onClick={() => scrollToSection('contact')}
+                        className={`transition-colors hover:opacity-70 ${
+                            theme === "dark" ? "text-white" : "text-black"
+                        }`}>
+                        Contact
+                    </button>
+                </div>
+
+                {/* Right side buttons - Positioned on the right */}
+                <div className="flex items-center space-x-2 ml-auto">
                     <button
                         onClick={toggleTheme}
                         className={`p-2 rounded-full transition-colors ${
@@ -88,9 +132,20 @@ const Navbar: React.FC = () => {
                         aria-label="Toggle theme">
                         {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
                     </button>
+                    
+                    {/* Mobile menu button */}
+                    <button
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        className={`md:hidden p-2 rounded-full transition-colors ${
+                            theme === "dark" ? "text-white hover:bg-gray-800" : "text-black hover:bg-gray-200"
+                        }`}
+                        aria-label="Toggle mobile menu">
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                    
                     <button
                         ref={helpButtonRef}
-                        className={`p-2 rounded-full transition-colors ${
+                        className={`hidden md:block p-2 rounded-full transition-colors ${
                             showHelp ? 
                                 (theme === "dark" ? "bg-gray-700" : "bg-gray-300") : 
                                 "bg-transparent"
@@ -126,6 +181,46 @@ const Navbar: React.FC = () => {
                     <p className="text-sm">
                         Last Updated: <strong>{lastUpdated}</strong>
                     </p>
+                </div>
+            )}
+            
+            {/* Mobile Navigation Menu */}
+            {mobileMenuOpen && (
+                <div className={`md:hidden mobile-menu ${
+                    theme === "dark" ? "bg-black" : "bg-white"
+                } border-t ${
+                    theme === "dark" ? "border-gray-800" : "border-gray-200"
+                }`}>
+                    <div className="px-6 py-4 space-y-3">
+                        <button
+                            onClick={() => scrollToSection('about')}
+                            className={`block w-full text-left py-2 transition-colors hover:opacity-70 ${
+                                theme === "dark" ? "text-white" : "text-black"
+                            }`}>
+                            About
+                        </button>
+                        <button
+                            onClick={() => scrollToSection('projects')}
+                            className={`block w-full text-left py-2 transition-colors hover:opacity-70 ${
+                                theme === "dark" ? "text-white" : "text-black"
+                            }`}>
+                            Projects
+                        </button>
+                        <button
+                            onClick={() => scrollToSection('skills')}
+                            className={`block w-full text-left py-2 transition-colors hover:opacity-70 ${
+                                theme === "dark" ? "text-white" : "text-black"
+                            }`}>
+                            Skills
+                        </button>
+                        <button
+                            onClick={() => scrollToSection('contact')}
+                            className={`block w-full text-left py-2 transition-colors hover:opacity-70 ${
+                                theme === "dark" ? "text-white" : "text-black"
+                            }`}>
+                            Contact
+                        </button>
+                    </div>
                 </div>
             )}
         </nav>
