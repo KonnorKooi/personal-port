@@ -24,15 +24,7 @@ const projects: Project[] = [
         buttonText: "Link",
         link: "https://cwooper.me/schedule-optimizer/",
     },
-    {
-        id: "gaussian-viewer",
-        title: "Gaussian Viewer",
-        date: "Nov-Dec 2024",
-        description: "Developed a WebGL-based 3D rendering engine for visualizing point-cloud data using Gaussian Splatting techniques with PLY file support. Implemented advanced shader programs for GPU-accelerated rendering with covariance matrix calculations, quaternion-based rotations, and tile-based sorting for performance. Created a modular JavaScript architecture with separate modules for rendering, camera control, and file parsing.",
-        imageUrl: "/images/gausian-vango_optimized.jpg",
-        buttonText: "Link",
-        link: "https://konnorkooi.com/gaussian-viewer/",
-    },
+    
     {
         id: "schedule-npm-package",
         title: "Schedule NPM Package",
@@ -50,7 +42,16 @@ const projects: Project[] = [
         imageUrl: "/images/quiz-app_optimized.jpg",
         buttonText: "Link",
         link: "https://konnorkooi.com/quiz-app/",
-    }
+    },
+    {
+        id: "gaussian-viewer",
+        title: "Gaussian Viewer",
+        date: "Nov-Dec 2024",
+        description: "Developed a WebGL-based 3D rendering engine for visualizing point-cloud data using Gaussian Splatting techniques with PLY file support. Implemented advanced shader programs for GPU-accelerated rendering with covariance matrix calculations, quaternion-based rotations, and tile-based sorting for performance. Created a modular JavaScript architecture with separate modules for rendering, camera control, and file parsing.",
+        imageUrl: "/images/gausian-vango_optimized.jpg",
+        buttonText: "Link",
+        link: "https://konnorkooi.com/gaussian-viewer/",
+    },
 ];
 
 const ProjectsSection: React.FC = () => {
@@ -77,7 +78,7 @@ const ProjectsSection: React.FC = () => {
                     },
                     {
                         x: 0,
-                        stagger: 1, // Reduced from 0.5 to 0.2 for better distribution
+                        stagger: 0.5, // Reduced from 0.5 to 0.2 for better distribution
                         rotate: 0,
                         scrollTrigger: {
                             trigger: containerRef.current,
@@ -85,7 +86,7 @@ const ProjectsSection: React.FC = () => {
                             markers: false, // Set to true for debugging
                             scrub: true,
                             start: "top top",
-                            end: "+=5000", // Increased from 2500 to 4000 for longer animation
+                            end: "+=3000", // Increased from 2500 to 4000 for longer animation
                             invalidateOnRefresh: true
                         }
                     }

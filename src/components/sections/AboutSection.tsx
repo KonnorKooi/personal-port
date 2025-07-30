@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeProvider";
 import { Github, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import Image from "next/image";
 
 const AboutSection: React.FC = () => {
   const { theme } = useTheme();
@@ -29,10 +30,31 @@ const AboutSection: React.FC = () => {
   return (
     <section
       id="about"
-      className={`min-h-screen flex items-center justify-center px-6 py-8 ${
-        theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-      } transition-colors duration-300`}
+      className="min-h-screen flex items-center justify-center px-6 py-8 relative overflow-hidden"
     >
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={theme === "dark" ? "/images/night-day-photos/night.PNG" : "/images/night-day-photos/day.JPG"}
+          alt={theme === "dark" ? "Night sky background" : "Day sky background"}
+          fill
+          className="object-cover transition-opacity duration-500"
+          priority
+        />
+        {/* Overlay for better text readability */}
+        <div 
+          className={`absolute inset-0 transition-all duration-300 ${
+            theme === "dark" 
+              ? "bg-black bg-opacity-40" 
+              : "bg-white bg-opacity-50"
+          }`} 
+        />
+      </div>
+
+      {/* Content with higher z-index */}
+      <div className={`relative z-10 w-full transition-colors duration-300 ${
+        theme === "dark" ? "text-white" : "text-black"
+      }`}>
       <motion.div
         className="max-w-4xl mx-auto"
         variants={containerVariants}
@@ -62,9 +84,9 @@ const AboutSection: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12"
         >
           <div
-            className={`p-4 md:p-6 rounded-lg ${
-              theme === "dark" ? "bg-gray-900" : "bg-gray-100"
-            }`}
+            className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
+              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-white bg-opacity-70"
+            } shadow-lg`}
           >
             <div className="flex items-center mb-3 md:mb-4">
               <GraduationCap className="mr-2 md:mr-3" size={20} />
@@ -83,9 +105,9 @@ const AboutSection: React.FC = () => {
           </div>
 
           <div
-            className={`p-4 md:p-6 rounded-lg ${
-              theme === "dark" ? "bg-gray-900" : "bg-gray-100"
-            }`}
+            className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
+              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-white bg-opacity-70"
+            } shadow-lg`}
           >
             <div className="flex items-center mb-3 md:mb-4">
               <Briefcase className="mr-2 md:mr-3" size={20} />
@@ -105,7 +127,7 @@ const AboutSection: React.FC = () => {
         <motion.div variants={itemVariants} className="text-center">
           <div
             className={`p-6 md:p-8 rounded-lg ${
-              theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-gray-100 bg-opacity-70"
             }`}
           >
             <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6">About Me</h3>
@@ -132,6 +154,7 @@ const AboutSection: React.FC = () => {
           </div>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 };
