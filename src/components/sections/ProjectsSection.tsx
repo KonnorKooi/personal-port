@@ -69,28 +69,44 @@ const ProjectsSection: React.FC = () => {
             gsap.registerPlugin(ScrollTrigger);
 
             if (containerRef.current) {
-                // Animation for cards flying in from the right
-                gsap.fromTo(
-                    ".project-card:not(:first-child)",
-                    {
-                        x: () => window.innerWidth / 2 + 100,
-                        rotate: 90,
-                    },
-                    {
-                        x: 0,
-                        stagger: 0.5, // Reduced from 0.5 to 0.2 for better distribution
-                        rotate: 0,
-                        scrollTrigger: {
-                            trigger: containerRef.current,
-                            pin: containerRef.current,
-                            markers: false, // Set to true for debugging
-                            scrub: true,
-                            start: "top top",
-                            end: "+=3000", // Increased from 2500 to 4000 for longer animation
-                            invalidateOnRefresh: true
-                        }
+                // Calculate total scroll distance
+                const cardScrollDistance = 1500; // Distance per card
+                const totalCards = projects.length;
+                const totalScrollDistance = cardScrollDistance * (totalCards - 1); // -1 because first card is already visible
+                
+                // Animation for cards flying in from the right with custom timing
+                const timeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        pin: containerRef.current,
+                        markers: false,
+                        scrub: true,
+                        start: "top top",
+                        end: `+=${totalScrollDistance}`,
+                        invalidateOnRefresh: true
                     }
-                );
+                });
+
+                // Add each card animation to timeline with specific timing
+                projects.slice(1).forEach((_, index) => {
+                    const cardIndex = index + 1; // +1 because we're skipping first card
+                    const isLastCard = cardIndex === totalCards - 1;
+                    const cardDuration = isLastCard ? 1200 : cardScrollDistance; // Last card much shorter
+                    
+                    timeline.fromTo(
+                        `.project-card:nth-child(${cardIndex + 1})`,
+                        {
+                            x: () => window.innerWidth / 2 + 100,
+                            rotate: 90,
+                        },
+                        {
+                            x: 0,
+                            rotate: 0,
+                            duration: cardDuration,
+                        },
+                        index * cardScrollDistance // Start time for each card
+                    );
+                });
             }
         };
 

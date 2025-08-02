@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeProvider";
-import { Github, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { Github, MapPin, GraduationCap, Briefcase, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 const AboutSection: React.FC = () => {
@@ -39,14 +39,17 @@ const AboutSection: React.FC = () => {
           alt={theme === "dark" ? "Night sky background" : "Day sky background"}
           fill
           className="object-cover transition-opacity duration-500"
+          style={{
+            objectPosition: '-30% 0%' // Crop top and right: move image left and down
+          }}
           priority
         />
         {/* Overlay for better text readability */}
         <div 
           className={`absolute inset-0 transition-all duration-300 ${
             theme === "dark" 
-              ? "bg-black bg-opacity-30" 
-              : "bg-white bg-opacity-20"
+              ? "bg-black bg-opacity-20" 
+              : "bg-white bg-opacity-15"
           }`} 
         />
       </div>
@@ -63,29 +66,25 @@ const AboutSection: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <motion.div variants={itemVariants} className="text-center mb-8 md:mb-12">
-          <div className={`inline-block px-6 py-4 rounded-lg backdrop-blur-md ${
-            theme === "dark" ? "bg-black bg-opacity-60" : "bg-white bg-opacity-70"
-          } shadow-xl`}>
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${
-              theme === "dark" ? "text-white drop-shadow-lg" : "text-black drop-shadow-md"
-            }`}>
-              Konnor Kooi
-            </h1>
-            
-            <div className={`flex items-center justify-center gap-2 text-base md:text-lg ${
-              theme === "dark" ? "text-white drop-shadow-md" : "text-black drop-shadow-sm"
-            }`}>
-              <Github size={18} className="md:hidden" />
-              <Github size={20} className="hidden md:block" />
-              <a
-                href="https://github.com/KonnorKooi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-70 transition-opacity"
-              >
-                github.com/KonnorKooi
-              </a>
-            </div>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-2 ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}>
+            Konnor Kooi
+          </h1>
+
+          <div className={`flex items-center justify-center gap-2 text-base md:text-lg ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}>
+            <Linkedin size={18} className="md:hidden" />
+            <Linkedin size={20} className="hidden md:block" />
+            <a
+              href="https://linkedin.com/in/konnor-kooi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-70 transition-opacity"
+            >
+              linkedin.com/in/konnor-kooi
+            </a>
           </div>
         </motion.div>
 

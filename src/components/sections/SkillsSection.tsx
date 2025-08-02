@@ -35,11 +35,6 @@ const skillsData: SkillCategory[] = [
                 explanation: "Academic and Qidds experience with object-oriented programming, Spring framework, and enterprise applications."
             },
             {
-                name: "JavaScript",
-                level: 2,
-                explanation: "Used in Schedule Optimizer Project."
-            },
-            {
                 name: "Python",
                 level: 2,
                 explanation: "Used in Computer vision projects with Scott training TL-GANs for WWU CS Research."
@@ -184,8 +179,8 @@ const SkillsSection: React.FC = () => {
                 <div 
                     className={`absolute inset-0 transition-all duration-300 ${
                         theme === "dark" 
-                            ? "bg-black bg-opacity-30" 
-                            : "bg-white bg-opacity-20"
+                            ? "bg-black bg-opacity-20" 
+                            : "bg-white bg-opacity-15"
                     }`} 
                 />
             </div>
@@ -201,20 +196,16 @@ const SkillsSection: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className={`inline-block px-8 py-6 rounded-lg backdrop-blur-md ${
-                        theme === "dark" ? "bg-black bg-opacity-60" : "bg-white bg-opacity-70"
-                    } shadow-xl`}>
-                        <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
-                            theme === "dark" ? "text-white drop-shadow-lg" : "text-black drop-shadow-md"
-                        }`}>
-                            Skills & Technologies
-                        </h2>
-                        <p className={`text-xl max-w-2xl mx-auto ${
-                            theme === "dark" ? "text-white opacity-90 drop-shadow-md" : "text-black opacity-80 drop-shadow-sm"
-                        }`}>
-                            An overview of my technical skills
-                        </p>
-                    </div>
+                    <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
+                        theme === "dark" ? "text-white" : "text-black"
+                    }`}>
+                        Skills & Technologies
+                    </h2>
+                    <p className={`text-xl max-w-2xl mx-auto ${
+                        theme === "dark" ? "text-white opacity-90" : "text-black opacity-80"
+                    }`}>
+                        An overview of my technical skills
+                    </p>
                 </motion.div>
 
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
