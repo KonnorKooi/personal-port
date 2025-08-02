@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../ThemeProvider";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 interface Skill {
     name: string;
@@ -168,30 +169,60 @@ const SkillsSection: React.FC = () => {
     return (
         <section
             id="skills"
-            className={`min-h-screen py-8 px-6 ${
-                theme === "dark" ? "bg-black text-white" : "bg-white text-black"
-            } transition-colors duration-300`}
+            className="min-h-screen py-8 px-6 relative overflow-hidden"
         >
-            <div className="max-w-7xl mx-auto">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src={theme === "dark" ? "/images/night-day-photos/guitar_night.jpg" : "/images/night-day-photos/guitar_day.jpg"}
+                    alt={theme === "dark" ? "Guitar at night background" : "Guitar during day background"}
+                    fill
+                    className="object-cover transition-opacity duration-500"
+                    priority
+                />
+                {/* Overlay for better text readability */}
+                <div 
+                    className={`absolute inset-0 transition-all duration-300 ${
+                        theme === "dark" 
+                            ? "bg-black bg-opacity-30" 
+                            : "bg-white bg-opacity-20"
+                    }`} 
+                />
+            </div>
+
+            {/* Content with higher z-index */}
+            <div className={`relative z-10 max-w-7xl mx-auto transition-colors duration-300 ${
+                theme === "dark" ? "text-white" : "text-black"
+            }`}>
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-16 pt-8"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Technologies</h2>
-                    <p className="text-xl opacity-80 max-w-2xl mx-auto">
-                        An overview of my technical skills
-                    </p>
+                    <div className={`inline-block px-8 py-6 rounded-lg backdrop-blur-md ${
+                        theme === "dark" ? "bg-black bg-opacity-60" : "bg-white bg-opacity-70"
+                    } shadow-xl`}>
+                        <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${
+                            theme === "dark" ? "text-white drop-shadow-lg" : "text-black drop-shadow-md"
+                        }`}>
+                            Skills & Technologies
+                        </h2>
+                        <p className={`text-xl max-w-2xl mx-auto ${
+                            theme === "dark" ? "text-white opacity-90 drop-shadow-md" : "text-black opacity-80 drop-shadow-sm"
+                        }`}>
+                            An overview of my technical skills
+                        </p>
+                    </div>
                 </motion.div>
 
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
                     {skillsData.map((category, categoryIndex) => (
                         <motion.div
                             key={category.title}
-                            className={`p-4 md:p-6 rounded-lg ${
-                                theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                            className={`p-4 md:p-6 rounded-lg backdrop-blur-sm shadow-lg ${
+                                theme === "dark" ? "bg-gray-900 bg-opacity-80" : "bg-white bg-opacity-90"
                             }`}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -205,10 +236,10 @@ const SkillsSection: React.FC = () => {
                                 {category.skills.map((skill, skillIndex) => (
                                     <motion.div
                                         key={skill.name}
-                                        className={`p-3 md:p-4 rounded-lg cursor-pointer transition-all duration-200 ${
+                                        className={`p-3 md:p-4 rounded-lg cursor-pointer transition-all duration-200 backdrop-blur-sm ${
                                             theme === "dark"
-                                                ? "bg-gray-800 hover:bg-gray-700"
-                                                : "bg-white hover:bg-gray-50 shadow-sm hover:shadow-md"
+                                                ? "bg-gray-800 bg-opacity-80 hover:bg-gray-700 hover:bg-opacity-90"
+                                                : "bg-white bg-opacity-90 hover:bg-gray-50 hover:bg-opacity-95 shadow-sm hover:shadow-md"
                                         }`}
                                         onClick={() => setSelectedSkill(skill)}
                                         whileHover={{ scale: 1.02 }}
@@ -276,9 +307,9 @@ const SkillsSection: React.FC = () => {
                             onClick={() => setSelectedSkill(null)}
                         />
                         <motion.div
-                            className={`relative max-w-md w-full p-4 md:p-6 rounded-lg ${
-                                theme === "dark" ? "bg-gray-900" : "bg-white"
-                            } shadow-2xl max-h-[90vh] overflow-y-auto`}
+                            className={`relative max-w-md w-full p-4 md:p-6 rounded-lg backdrop-blur-sm shadow-2xl max-h-[90vh] overflow-y-auto ${
+                                theme === "dark" ? "bg-gray-900 bg-opacity-90" : "bg-white bg-opacity-95"
+                            }`}
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}

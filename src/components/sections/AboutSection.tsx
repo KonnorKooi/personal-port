@@ -63,19 +63,29 @@ const AboutSection: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <motion.div variants={itemVariants} className="text-center mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Konnor Kooi</h1>
-          
-          <div className="flex items-center justify-center gap-2 text-base md:text-lg">
-            <Github size={18} className="md:hidden" />
-            <Github size={20} className="hidden md:block" />
-            <a
-              href="https://github.com/KonnorKooi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
-            >
-              github.com/KonnorKooi
-            </a>
+          <div className={`inline-block px-6 py-4 rounded-lg backdrop-blur-md ${
+            theme === "dark" ? "bg-black bg-opacity-60" : "bg-white bg-opacity-70"
+          } shadow-xl`}>
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${
+              theme === "dark" ? "text-white drop-shadow-lg" : "text-black drop-shadow-md"
+            }`}>
+              Konnor Kooi
+            </h1>
+            
+            <div className={`flex items-center justify-center gap-2 text-base md:text-lg ${
+              theme === "dark" ? "text-white drop-shadow-md" : "text-black drop-shadow-sm"
+            }`}>
+              <Github size={18} className="md:hidden" />
+              <Github size={20} className="hidden md:block" />
+              <a
+                href="https://github.com/KonnorKooi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-70 transition-opacity"
+              >
+                github.com/KonnorKooi
+              </a>
+            </div>
           </div>
         </motion.div>
 
@@ -85,7 +95,7 @@ const AboutSection: React.FC = () => {
         >
           <div
             className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
-              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-white bg-opacity-70"
+              theme === "dark" ? "bg-gray-900 bg-opacity-90" : "bg-white bg-opacity-90"
             } shadow-lg`}
           >
             <div className="flex items-center mb-3 md:mb-4">
@@ -106,7 +116,7 @@ const AboutSection: React.FC = () => {
 
           <div
             className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
-              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-white bg-opacity-70"
+              theme === "dark" ? "bg-gray-900 bg-opacity-90" : "bg-white bg-opacity-90"
             } shadow-lg`}
           >
             <div className="flex items-center mb-3 md:mb-4">
@@ -127,7 +137,7 @@ const AboutSection: React.FC = () => {
         <motion.div variants={itemVariants} className="text-center">
           <div
             className={`p-6 md:p-8 rounded-lg ${
-              theme === "dark" ? "bg-gray-900 bg-opacity-50" : "bg-gray-100 bg-opacity-70"
+              theme === "dark" ? "bg-gray-900 bg-opacity-90" : "bg-gray-100 bg-opacity-90"
             }`}
           >
             <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6">About Me</h3>
