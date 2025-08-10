@@ -42,17 +42,17 @@ const skillsData: SkillCategory[] = [
             
             {
                 name: "C",
-                level: 1,
+                level: 2,
                 explanation: "Used for system level programming and understanding low-level operations in school."
             },
             {
                 name: "Julia",
-                level: 1,
+                level: 2,
                 explanation: "Computer Graphics class creating 3d graphics from scratch."
             },
             {
                 name: "Basic HTML/CSS/JS",
-                level: 1,
+                level: 2,
                 explanation: "Created small projects and web pages for personal use like the json quiz app."
             }
 
@@ -79,7 +79,7 @@ const skillsData: SkillCategory[] = [
             },
             {
                 name: "Docker",
-                level: 2,
+                level: 3,
                 explanation: "Used docker on my at home mini-PC server to run multiple local applications like n8n and Crawl4AI."
             },
             {
@@ -89,7 +89,7 @@ const skillsData: SkillCategory[] = [
             },
             {
                 name: "MongoDB",
-                level: 1,
+                level: 2,
                 explanation: "Used for School on a few projects. "
             },
             
@@ -105,7 +105,7 @@ const skillsData: SkillCategory[] = [
             },
             {
                 name: "Next.js",
-                level: 3,
+                level: 4,
                 explanation: "Used for full-stack React applications with SSR, API routes, and optimized performance."
             },
             {
@@ -120,7 +120,7 @@ const skillsData: SkillCategory[] = [
             },
             {
                 name: "WebGL",
-                level: 1,
+                level: 2,
                 explanation: "Been awhile since I used it, but I have experience with 3D graphics programming and rendering techniques from the 3D gaussian viewer project trying to optimize it for browser performance."
             },
         ]

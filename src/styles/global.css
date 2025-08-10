@@ -130,3 +130,9 @@ a:focus-visible {
     min-width: 44px;
   }
 }
+
+.no-transition *,
+.no-transition *::before,
+.no-transition *::after {
+  transition: none !important;
+}
