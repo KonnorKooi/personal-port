@@ -114,7 +114,7 @@ const AboutSection: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 md:mb-14"
           >
             <div
-              className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
+              className={`p-4 md:p-6 card-angular-small backdrop-blur-sm shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
                 theme === "dark"
                   ? "bg-gray-900 bg-opacity-90"
                   : "bg-white bg-opacity-90"
@@ -143,7 +143,7 @@ const AboutSection: React.FC = () => {
             </div>
 
             <div
-              className={`p-4 md:p-6 rounded-lg backdrop-blur-sm ${
+              className={`p-4 md:p-6 card-angular-small backdrop-blur-sm shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
                 theme === "dark"
                   ? "bg-gray-900 bg-opacity-90"
                   : "bg-white bg-opacity-90"
@@ -168,10 +168,10 @@ const AboutSection: React.FC = () => {
           {/* About Me */}
           <motion.div variants={itemVariants} className="text-center">
             <div
-              className={`p-6 md:p-8 rounded-lg ${
+              className={`p-6 md:p-8 card-angular-small shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
                 theme === "dark"
                   ? "bg-gray-900 bg-opacity-90"
-                  : "bg-gray-100 bg-opacity-90"
+                  : "bg-gray-50 bg-opacity-90"
               }`}
             >
               <h3 className="text-xl md:text-2xl font-semibold mb-5">

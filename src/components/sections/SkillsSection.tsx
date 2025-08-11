@@ -146,7 +146,7 @@ const SkillsSection: React.FC = () => {
                 {[1, 2, 3, 4, 5].map((dot) => (
                     <div
                         key={dot}
-                        className={`w-2 h-2 rounded-full ${
+                        className={`w-2 h-2 card-octagon ${
                             dot <= level
                                 ? theme === "dark" 
                                     ? "bg-white" 
@@ -212,7 +212,7 @@ const SkillsSection: React.FC = () => {
                     {skillsData.map((category, categoryIndex) => (
                         <motion.div
                             key={category.title}
-                            className={`p-4 md:p-6 rounded-lg backdrop-blur-sm shadow-lg ${
+                            className={`p-4 md:p-6 card-angular-small backdrop-blur-sm shadow-lg shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
                                 theme === "dark" ? "bg-gray-900 bg-opacity-80" : "bg-white bg-opacity-90"
                             }`}
                             initial={{ opacity: 0, y: 30 }}
@@ -227,7 +227,7 @@ const SkillsSection: React.FC = () => {
                                 {category.skills.map((skill, skillIndex) => (
                                     <motion.div
                                         key={skill.name}
-                                        className={`p-3 md:p-4 rounded-lg cursor-pointer transition-all duration-200 backdrop-blur-sm ${
+                                        className={`p-3 md:p-4 card-angular-small cursor-pointer transition-all duration-200 backdrop-blur-sm ${
                                             theme === "dark"
                                                 ? "bg-gray-800 bg-opacity-80 hover:bg-gray-700 hover:bg-opacity-90"
                                                 : "bg-white bg-opacity-90 hover:bg-gray-50 hover:bg-opacity-95 shadow-sm hover:shadow-md"
@@ -255,8 +255,8 @@ const SkillsSection: React.FC = () => {
 
                 {/* Skill Level Key */}
                 <motion.div
-                    className={`p-6 rounded-lg ${
-                        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                    className={`p-6 card-angular-small ${
+                        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                     }`}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -298,7 +298,7 @@ const SkillsSection: React.FC = () => {
                             onClick={() => setSelectedSkill(null)}
                         />
                         <motion.div
-                            className={`relative max-w-md w-full p-4 md:p-6 rounded-lg backdrop-blur-sm shadow-2xl max-h-[90vh] overflow-y-auto ${
+                            className={`relative max-w-md w-full p-4 md:p-6 card-angular-small backdrop-blur-sm shadow-2xl max-h-[90vh] overflow-y-auto ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
                                 theme === "dark" ? "bg-gray-900 bg-opacity-90" : "bg-white bg-opacity-95"
                             }`}
                             initial={{ scale: 0.8, opacity: 0 }}
@@ -308,7 +308,7 @@ const SkillsSection: React.FC = () => {
                         >
                             <button
                                 onClick={() => setSelectedSkill(null)}
-                                className={`absolute top-3 right-3 md:top-4 md:right-4 p-2 rounded-full transition-colors ${
+                                className={`absolute top-3 right-3 md:top-4 md:right-4 p-2 card-hexagon transition-colors ${
                                     theme === "dark" ? "hover:bg-gray-800" : "hover:bg-gray-100"
                                 }`}
                             >

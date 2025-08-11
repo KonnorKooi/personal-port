@@ -93,8 +93,8 @@ const ContactSection: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <div className={`p-4 md:p-6 rounded-lg text-center ${
-                        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                    <div className={`p-4 md:p-6 card-angular-small text-center ${
+                        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                     }`}>
                         <Mail className="mx-auto mb-3 md:mb-4" size={28} />
                         <h3 className="text-lg md:text-xl font-semibold mb-2">Email</h3>
@@ -106,8 +106,8 @@ const ContactSection: React.FC = () => {
                         </a>
                     </div>
                     
-                    <div className={`p-4 md:p-6 rounded-lg text-center ${
-                        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                    <div className={`p-4 md:p-6 card-angular-small text-center ${
+                        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                     }`}>
                         <Phone className="mx-auto mb-3 md:mb-4" size={28} />
                         <h3 className="text-lg md:text-xl font-semibold mb-2">Phone</h3>
@@ -119,8 +119,8 @@ const ContactSection: React.FC = () => {
                         </a>
                     </div>
                     
-                    <div className={`p-4 md:p-6 rounded-lg text-center ${
-                        theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                    <div className={`p-4 md:p-6 card-angular-small text-center ${
+                        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                     }`}>
                         <MapPin className="mx-auto mb-3 md:mb-4" size={28} />
                         <h3 className="text-lg md:text-xl font-semibold mb-2">Location</h3>
@@ -169,14 +169,14 @@ const ContactSection: React.FC = () => {
                             {[...contactData, ...contactData].map((contact, index) => (
                                 <SwiperSlide key={`${contact.name}-${index}`}>
                                     <motion.div
-                                        className={`relative group cursor-pointer p-4 md:p-6 rounded-lg ${
-                                            theme === "dark" ? "bg-gray-900" : "bg-gray-100"
+                                        className={`relative group cursor-pointer p-4 md:p-6 card-angular-small shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
+                                            theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                                         } hover:scale-105 transition-all duration-300`}
                                         whileHover={{ y: -10 }}
                                         onClick={() => window.open(contact.url, '_blank')}
                                     >
                                         <div className="text-center">
-                                            <div className="relative mb-3 md:mb-4 mx-auto w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex items-center justify-center">
+                                            <div className="relative mb-3 md:mb-4 mx-auto w-16 h-16 md:w-20 md:h-20 card-hexagon overflow-hidden flex items-center justify-center">
                                                 <contact.icon 
                                                     size={32}
                                                     className={`md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300 ${
@@ -189,7 +189,7 @@ const ContactSection: React.FC = () => {
                                         </div>
                                         
                                         {/* Hover overlay */}
-                                        <div className={`absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center ${
+                                        <div className={`absolute inset-0 card-angular-small opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center ${
                                             theme === "dark" 
                                                 ? "bg-white bg-opacity-10" 
                                                 : "bg-black bg-opacity-10"
@@ -217,7 +217,7 @@ const ContactSection: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                         <a
                             href="mailto:konnorjkooi@gmail.com"
-                            className={`px-6 md:px-8 py-2 md:py-3 rounded-lg font-medium transition-colors text-sm md:text-base ${
+                            className={`px-6 md:px-8 py-2 md:py-3 card-angular-button font-medium transition-colors text-sm md:text-base ${
                                 theme === "dark"
                                     ? "bg-white text-black hover:bg-gray-200"
                                     : "bg-black text-white hover:bg-gray-800"
@@ -229,7 +229,7 @@ const ContactSection: React.FC = () => {
                             href="https://github.com/konnorkooi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`px-6 md:px-8 py-2 md:py-3 rounded-lg font-medium border transition-colors text-sm md:text-base ${
+                            className={`px-6 md:px-8 py-2 md:py-3 card-angular-button font-medium border transition-colors text-sm md:text-base ${
                                 theme === "dark"
                                     ? "border-white text-white hover:bg-white hover:text-black"
                                     : "border-black text-black hover:bg-black hover:text-white"

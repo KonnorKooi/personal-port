@@ -211,11 +211,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
         // Mobile layout: Simple card with better spacing
         return (
             <motion.div
-                className="project-card"
+                className={`project-card card-angular-small shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'}`}
                 style={{
                     width: '100%',
-                    backgroundColor: theme === "dark" ? '#1f2937' : '#f9fafb',
-                    borderRadius: '12px',
+                    backgroundColor: theme === "dark" ? '#1f2937' : '#f8fafc',
                     padding: '16px',
                     boxShadow: theme === "dark" 
                         ? '0 10px 25px rgba(0, 0, 0, 0.3)' 
@@ -231,10 +230,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
             >
                 {/* Project Image */}
                 <div 
+                    className="image-angular"
                     style={{
                         width: '100%',
                         height: '200px',
-                        borderRadius: '8px',
                         overflow: 'hidden',
                         marginBottom: '12px'
                     }}
@@ -289,12 +288,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="card-angular-button"
                     style={{
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '6px',
                         padding: '8px 12px',
-                        borderRadius: '6px',
                         fontWeight: '500',
                         textDecoration: 'none',
                         backgroundColor: theme === "dark" ? 'white' : 'black',
@@ -314,15 +313,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
     // Desktop layout: Original stacked card design
     return (
         <div
-            className="project-card"
+            className={`project-card card-angular shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'}`}
             style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
                 height: '100%',
-                backgroundColor: theme === "dark" ? '#1f2937' : '#f9fafb',
-                borderRadius: '12px',
+                backgroundColor: theme === "dark" ? '#1f2937' : '#f8fafc',
                 padding: '20px',
                 boxShadow: theme === "dark" 
                     ? '0 10px 25px rgba(0, 0, 0, 0.3)' 
@@ -335,10 +333,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
         >
             {/* Project Image */}
             <div 
+                className="image-angular"
                 style={{
                     width: '100%',
                     height: '400',
-                    borderRadius: '8px',
                     overflow: 'hidden',
                     marginBottom: '16px'
                 }}
@@ -393,12 +391,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="card-angular-button"
                 style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '8px',
                     padding: '10px 16px',
-                    borderRadius: '8px',
                     fontWeight: '500',
                     textDecoration: 'none',
                     backgroundColor: theme === "dark" ? 'white' : 'black',

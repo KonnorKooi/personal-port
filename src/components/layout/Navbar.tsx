@@ -59,29 +59,29 @@ const Navbar: React.FC = () => {
                     } ${isScrolled ? "text-xl md:text-2xl" : "text-xl md:text-2xl"}`}>
                         <div className="relative">
                             <span className={`transition-opacity duration-300 ease-in-out ${
-                                isScrolled ? "opacity-0" : "opacity-100"
+                                !isScrolled ? "opacity-0" : "opacity-100"
                             }`}>
                                 K
                             </span>
                             <span className={`absolute top-1/2 w-1 bg-current transition-all duration-10 ease-in-out transform -translate-y-1/2 ${
-                                isScrolled ? "opacity-100" : "opacity-0"
+                                !isScrolled ? "opacity-100" : "opacity-0"
                             } h-[14px] md:h-[17px] left-[-2px] md:left-[2px]`}>
                             </span>
                         </div>
                         <span className={`inline-block transition-all duration-500 ease-in-out overflow-hidden ${
-                            isScrolled 
+                            !isScrolled 
                                 ? "max-w-0 opacity-0 transform scale-x-0" 
                                 : "max-w-[200px] opacity-100 transform scale-x-100"
                         }`} style={{ transformOrigin: "left center" }}>
                             onnor
                         </span>
                         <span className={`transition-all duration-200 ease-in-out ${
-                            isScrolled ? "opacity-100" : "ml-2 opacity-100"
-                        }`} style={isScrolled ? { marginLeft: '-12px' } : { left: '-2px' }}>
+                            !isScrolled ? "opacity-100" : "ml-2 opacity-100"
+                        }`} style={!isScrolled ? { marginLeft: '-12px' } : { left: '-2px' }}>
                             K
                         </span>
                         <span className={`inline-block transition-all duration-500 ease-in-out overflow-hidden ${
-                            isScrolled 
+                            !isScrolled 
                                 ? "max-w-0 opacity-0 transform scale-x-0" 
                                 : "max-w-[200px] opacity-100 transform scale-x-100"
                         }`} style={{ transformOrigin: "left center" }}>
@@ -126,7 +126,7 @@ const Navbar: React.FC = () => {
                 <div className="flex items-center space-x-2 ml-auto">
                     <button
                         onClick={toggleTheme}
-                        className={`p-2 rounded-full transition-colors ${
+                        className={`p-2 card-hexagon transition-colors ${
                             theme === "dark" ? "text-white hover:bg-gray-800" : "text-black hover:bg-gray-200"
                         }`}
                         aria-label="Toggle theme">
@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
                     {/* Mobile menu button */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className={`md:hidden p-2 rounded-full transition-colors ${
+                        className={`md:hidden p-2 card-hexagon transition-colors ${
                             theme === "dark" ? "text-white hover:bg-gray-800" : "text-black hover:bg-gray-200"
                         }`}
                         aria-label="Toggle mobile menu">
@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
                     
                     <button
                         ref={helpButtonRef}
-                        className={`hidden md:block p-2 rounded-full transition-colors ${
+                        className={`hidden md:block p-2 card-hexagon transition-colors ${
                             showHelp ? 
                                 (theme === "dark" ? "bg-gray-700" : "bg-gray-300") : 
                                 "bg-transparent"
@@ -169,7 +169,7 @@ const Navbar: React.FC = () => {
                     
                     className={`absolute top-16 right-6 w-64 p-4 ${
                         theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
-                    } rounded-lg shadow-lg z-50`}>
+                    } card-angular-small shadow-lg z-50`}>
                     <h2 className="text-lg font-semibold mb-2">
                         Project Information
                     </h2>
