@@ -169,10 +169,9 @@ const ContactSection: React.FC = () => {
                             {[...contactData, ...contactData].map((contact, index) => (
                                 <SwiperSlide key={`${contact.name}-${index}`}>
                                     <motion.div
-                                        className={`relative group cursor-pointer p-4 md:p-6 card-angular-small shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'} ${
+                                        className={`relative group cursor-pointer p-4 md:p-6 card-angular-small ${
                                             theme === "dark" ? "bg-gray-900" : "bg-gray-50"
                                         } hover:scale-105 transition-all duration-300`}
-                                        whileHover={{ y: -10 }}
                                         onClick={() => window.open(contact.url, '_blank')}
                                     >
                                         <div className="text-center">
@@ -186,15 +185,6 @@ const ContactSection: React.FC = () => {
                                             </div>
                                             <h4 className="text-base md:text-lg font-semibold mb-1 md:mb-2">{contact.name}</h4>
                                             <p className="text-xs md:text-sm opacity-70">{contact.description}</p>
-                                        </div>
-                                        
-                                        {/* Hover overlay */}
-                                        <div className={`absolute inset-0 card-angular-small opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center ${
-                                            theme === "dark" 
-                                                ? "bg-white bg-opacity-10" 
-                                                : "bg-black bg-opacity-10"
-                                        }`}>
-                                            <span className="text-xs md:text-sm font-medium">Click to visit</span>
                                         </div>
                                     </motion.div>
                                 </SwiperSlide>
@@ -217,7 +207,7 @@ const ContactSection: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                         <a
                             href="mailto:konnorjkooi@gmail.com"
-                            className={`px-6 md:px-8 py-2 md:py-3 card-angular-button font-medium transition-colors text-sm md:text-base ${
+                            className={`px-6 md:px-8 py-2 md:py-3 rounded font-medium transition-colors text-sm md:text-base ${
                                 theme === "dark"
                                     ? "bg-white text-black hover:bg-gray-200"
                                     : "bg-black text-white hover:bg-gray-800"
@@ -229,7 +219,7 @@ const ContactSection: React.FC = () => {
                             href="https://github.com/konnorkooi"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`px-6 md:px-8 py-2 md:py-3 card-angular-button font-medium border transition-colors text-sm md:text-base ${
+                            className={`px-6 md:px-8 py-2 md:py-3 rounded font-medium border transition-colors text-sm md:text-base ${
                                 theme === "dark"
                                     ? "border-white text-white hover:bg-white hover:text-black"
                                     : "border-black text-black hover:bg-black hover:text-white"

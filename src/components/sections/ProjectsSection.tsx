@@ -211,7 +211,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
         // Mobile layout: Simple card with better spacing
         return (
             <motion.div
-                className={`project-card card-angular-small shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'}`}
+                className={`project-card card-angular-small`}
                 style={{
                     width: '100%',
                     backgroundColor: theme === "dark" ? '#1f2937' : '#f8fafc',
@@ -313,7 +313,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobi
     // Desktop layout: Original stacked card design
     return (
         <div
-            className={`project-card card-angular shadow-angular ${theme === "dark" ? 'border-accent-dark' : 'border-accent'}`}
+            className={`project-card card-angular`}
             style={{
                 position: 'absolute',
                 top: 0,
