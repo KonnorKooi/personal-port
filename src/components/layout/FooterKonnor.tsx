@@ -69,7 +69,7 @@ const FooterKonnor: React.FC = () => {
                         </svg>
                     </a>
                     <a
-                        href="https://www.linkedin.com/in/konnor-kooi-93b83a281/"
+                        href="https://www.linkedin.com/in/konnorkooi/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`${theme === "dark" ? "hover:text-gray-300" : "hover:text-gray-600"}`}>

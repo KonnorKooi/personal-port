@@ -98,12 +98,12 @@ const AboutSection: React.FC = () => {
             >
               <Linkedin size={20} />
               <a
-                href="https://linkedin.com/in/konnor-kooi"
+                href="https://www.linkedin.com/in/konnorkooi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-70 transition-opacity"
               >
-                linkedin.com/in/konnor-kooi
+                linkedin.com/in/konnorkooi/
               </a>
             </div>
           </motion.div>

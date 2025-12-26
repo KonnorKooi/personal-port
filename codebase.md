@@ -349,7 +349,7 @@ export const socials = [
     {
       name: "LinkedIn",
       imageUrl: "https://img.icons8.com/color/48/000000/linkedin.png",
-      link: "https://www.linkedin.com/in/konnor-kooi-93b83a281/",
+      link: "https://www.linkedin.com/in/konnorkooi/",
       backgroundImage: "/images/linkedin.png",
     },
     {
@@ -736,7 +736,7 @@ const FooterKonnor: React.FC = () => {
                         </svg>
                     </a>
                     <a
-                        href="https://www.linkedin.com/in/konnor-kooi-93b83a281/"
+                        href="https://www.linkedin.com/in/konnorkooi/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-gray-300">
