@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../ThemeProvider";
 import Image from "next/image";
@@ -205,8 +205,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, theme, isMobile }) => {
-    const isOdd = index % 2 === 1;
-    
     if (isMobile) {
         // Mobile layout: Simple card with better spacing
         return (

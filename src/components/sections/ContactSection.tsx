@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useTheme } from "../ThemeProvider";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import Image from "next/image";
 import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Facebook } from "lucide-react";
 
 // Import Swiper styles
@@ -12,6 +11,7 @@ import 'swiper/css/autoplay';
 
 interface ContactInfo {
     name: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     icon: React.ComponentType<any>;
     url: string;
     description: string;

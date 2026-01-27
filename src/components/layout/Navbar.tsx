@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../ThemeProvider";
 
