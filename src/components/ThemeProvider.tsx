@@ -28,13 +28,13 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
 
-    // Set body bg & text color dynamically
+    // Set body bg & text color dynamically (warm palette to match the git-flow timeline)
     if (theme === "dark") {
-      document.body.style.backgroundColor = "#000000";
-      document.body.style.color = "#ffffff";
+      document.body.style.backgroundColor = "#0f0e0c";
+      document.body.style.color = "#f0ede4";
     } else {
-      document.body.style.backgroundColor = "#ffffff";
-      document.body.style.color = "#000000";
+      document.body.style.backgroundColor = "#FAFAF7";
+      document.body.style.color = "#1A1A1A";
     }
   }, [theme]);
 
