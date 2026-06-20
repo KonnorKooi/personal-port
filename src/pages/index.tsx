@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import GitFlowTimeline from "../components/sections/GitFlowTimeline";
+import VerticalTimeline from "../components/scroll/VerticalTimeline";
 import { useTheme } from "../components/ThemeProvider";
 
 const ThemeToggle: React.FC = () => {
@@ -38,22 +38,22 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Konnor Kooi — Portfolio</title>
+        <title>Konnor Kooi Portfolio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
-          content="Konnor Kooi — CS master's student at WWU. Computer vision research, web tools, and an internship at The Standard, laid out as a git-graph timeline."
+          content="Konnor Kooi, CS master's student at WWU. Computer vision research, web tools, and an internship at The Standard, laid out as a to-scale timeline."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Konnor Kooi — Portfolio" />
+        <meta property="og:title" content="Konnor Kooi Portfolio" />
         <meta
           property="og:description"
-          content="CS master's student at WWU. Computer vision research, web tools, and an internship at The Standard, laid out as a git-graph timeline."
+          content="CS master's student at WWU. Computer vision research, web tools, and an internship at The Standard, laid out as a to-scale timeline."
         />
         <meta property="og:url" content="https://konnorkooi.com/" />
         <meta property="og:image" content="https://konnorkooi.com/images/scheduleOpt_optimized.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Konnor Kooi — Portfolio" />
+        <meta name="twitter:title" content="Konnor Kooi Portfolio" />
         <meta
           name="twitter:description"
           content="CS master's student at WWU. Computer vision research, web tools, and an internship at The Standard."
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
         <meta name="twitter:image" content="https://konnorkooi.com/images/scheduleOpt_optimized.jpg" />
       </Head>
       <ThemeToggle />
-      <GitFlowTimeline />
+      <VerticalTimeline />
     </>
   );
 };
