@@ -16,7 +16,7 @@ export default function Document() {
       document.documentElement.classList.add('no-transition'); // Disable transitions
       document.documentElement.classList.add(theme);
 
-      document.body.style.backgroundColor = theme === 'dark' ? '#0f0e0c' : '#FAFAF7';
+      document.body.style.backgroundColor = theme === 'dark' ? '#0f0e0c' : '#FFFFFF';
       document.body.style.color = theme === 'dark' ? '#f0ede4' : '#1A1A1A';
 
       // Remove the no-transition class after a short delay

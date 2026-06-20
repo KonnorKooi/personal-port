@@ -33,7 +33,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       document.body.style.backgroundColor = "#0f0e0c";
       document.body.style.color = "#f0ede4";
     } else {
-      document.body.style.backgroundColor = "#FAFAF7";
+      document.body.style.backgroundColor = "#FFFFFF";
       document.body.style.color = "#1A1A1A";
     }
   }, [theme]);

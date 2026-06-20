@@ -280,15 +280,8 @@ export const EVENTS: Event[] = [
     dateRange: "Apr 2025 – Jun 2026",
     location: "Fremont, CA · Remote",
     role: "Full-Stack Developer Intern",
-    detail: "Remote full-stack development internship with QIDDS out of Fremont, CA.",
-    tech: ["React", "TypeScript", "Java", "Python", "Next.js", "Cypress", "n8n", "AWS"],
-    highlights: [
-      "Built different AI agents using self-hosted n8n to automatically discover, scrape, and validate over 300 educational resources, streamlining content acquisition for K-12 extracurricular platform and reducing manual curation time by ~80%",
-      "Contributed to complete website migration from legacy system to Next.js, improving SEO performance and speed by ~30%",
-      "Developed end-to-end testing suite using Cypress to enhance application quality assurance and reduce deployment risks",
-      "Implemented full-stack features including blog system, job portal, and admin panels using TypeScript and Java",
-      "Contributed across the full technology stack, supporting frontend development with React/TypeScript, backend API development with Java, educational content validation systems, and AWS infrastructure management",
-    ] },
+    detail: "Remote full-stack internship at QIDDS in Fremont, CA, working across the stack and building AI agents to find and validate content.",
+    tech: ["React", "TypeScript", "Java", "Python", "Next.js", "Cypress", "n8n", "AWS"] },
 
   { id: "autonomous-drone", branch: "proj/autonomous-drone", year: 2026, month: 1,
     type: "project",
@@ -297,14 +290,8 @@ export const EVENTS: Event[] = [
     dateRange: "Jan – Mar 2026",
     location: "Bellingham, WA",
     role: "Solo",
-    detail: "A robotics project training a deep reinforcement learning agent in Webots simulation for autonomous light-source seeking, then deploying the trained policy onto a real Crazyflie drone.",
+    detail: "A reinforcement learning agent trained in simulation to seek out light sources, then deployed on a real Crazyflie drone.",
     tech: ["Python", "Webots", "Reinforcement Learning", "Computer Vision", "Crazyflie"],
-    highlights: [
-      "Trained a deep RL agent in Webots simulation for autonomous light-source seeking, using a 4-layer MLP policy with stacked observation frames and a shaped reward system covering success, search, crash, and timeout conditions",
-      "Designed the agent's observation space using 4 stacked frames of 7 features each, including bearing, brightness, visibility, and rangefinder readings across 4 directions",
-      "Implemented an adaptive relative brightness thresholding CV pipeline for light detection under varying ambient conditions, outputting bearing, brightness, and visibility signals to the RL policy",
-      "Deployed the trained policy on a Crazyflie drone with an onboard AI deck GAP8 chip and STM32 chip",
-    ],
     images: [
       { src: "/images/autonomous_drone_slide.png", caption: "Autonomous drone light-source seeking.", fit: "contain" },
     ] },
@@ -316,15 +303,8 @@ export const EVENTS: Event[] = [
     dateRange: "Apr – Jun 2026",
     location: "Bellingham, WA",
     role: "Solo",
-    detail: "A conflict-onset classifier that predicts armed conflict probabilities from structured public data instead of news text corpora, with a Streamlit web app for predictions, SHAP feature importance, and historical backtests.",
+    detail: "Built a model that predicts armed conflict from public data instead of news text. It comes with a Streamlit app for predictions, SHAP feature importance, and backtests.",
     tech: ["Python", "XGBoost", "ExtraTrees", "SHAP", "Streamlit"],
-    highlights: [
-      "Developed an XGBoost and ExtraTrees conflict-onset classifier to predict armed conflict probabilities using structured public data instead of news text corpora",
-      "Engineered a 78-feature matrix from ACLED, UCDP, World Bank, and IMF datasets focusing on political indicators and spatial contagion metrics",
-      "Built a ViEWS-compliant country-month probabilistic forecaster and a country-week binary classifier, beating the standard text-based benchmark by +0.056 AUROC on 10-year peace intervals",
-      "Created a Streamlit web application to display predictions, feature importance using SHAP values, and historical backtests for 237 countries",
-      "Managed AI coding assistants to write data preprocessing pipelines and model training scripts while manually auditing for recording-time data leaks",
-    ],
     images: [
       { src: "/images/conflict_forcasting.png", caption: "Conflict Forecasting Classifier web app.", frame: "browser", frameLabel: "konnorkooi.com/conflict-forecast" },
     ],
@@ -349,10 +329,11 @@ export const EVENTS: Event[] = [
 
   { id: "the-standard", branch: "work/the-standard", year: 2026, month: 6,
     title: "branch: work/the-standard",
-    subtitle: "The Standard - Intern",
+    subtitle: "Data Science Intern at The Standard",
     dateRange: "Jun 2026 – Present",
-    role: "Intern",
-    detail: "Started an internship with The Standard." },
+    role: "Data Science Intern, AI Delivery team",
+    detail: "Data Science Intern on the AI Delivery team, supporting the development and evaluation of AI-powered workflow products. Partners with data scientists, ML engineers, and product owners across model development, experimentation, and data analysis.",
+    tech: ["Python", "pandas", "scikit-learn", "SQL", "Git"] },
 
   { id: "head", branch: "main", year: 2026, month: 6,
     title: "HEAD",
@@ -364,7 +345,7 @@ export const EVENTS: Event[] = [
 export const CONTACT: Contact = {
   name: "Konnor Kooi",
   bio: "Computer science master's student at WWU. From Olympia, WA.",
-  about: "I grew up in Olympia and now live in Bellingham, working on my master's in computer science at WWU. I do computer vision research in Scott Wehrwein's lab, intern at The Standard, and a previous intern at QIDDS. Away from the keyboard I like to play and referee olleyball, play guitar, and run.",
+  about: "Hi, I'm Konnor Kooi, a Computer Science student at Western Washington University focused on software development and computer vision research. I work under Dr. Scott Wehrwein on video compression research, and I'm gaining industry experience as a Full-stack Developer Intern at Qidds and on the AI Delivery team at The Standard. Feel free to connect if you're interested in software development or research.",
   email: "konnorjkooi@gmail.com",
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/konnorkooi/" },

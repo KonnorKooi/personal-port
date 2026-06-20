@@ -121,7 +121,7 @@ const YEARS = (() => {
   return out;
 })();
 
-type Tokens = { bg: string; fg: string; muted: string; hair: string; grid: string; laneBg: string; cardBg: string; cardBorder: string };
+type Tokens = { bg: string; fg: string; muted: string; hair: string; grid: string; laneBg: string; cardBg: string; cardBorder: string; imgFrame: string };
 
 const useMobile = () => {
   const [m, setM] = useState(true);
@@ -158,7 +158,7 @@ const Detail: React.FC<{ bar: Bar; T: Tokens; dark: boolean; onClose: () => void
       }}>
         {img ? (
           img.frame === "browser" ? (
-            <div style={{ borderBottom: `1px solid ${T.cardBorder}` }}>
+            <div style={{ border: `1px solid ${T.imgFrame}`, borderRadius: 8, overflow: "hidden", margin: 16, marginBottom: 0 }}>
               <div style={{
                 display: "flex", alignItems: "center", gap: 8, padding: "8px 8px 8px 12px",
                 background: dark ? "#26241f" : "#ECE9DF", borderBottom: `1px solid ${T.cardBorder}`,
@@ -180,9 +180,12 @@ const Detail: React.FC<{ bar: Bar; T: Tokens; dark: boolean; onClose: () => void
             </div>
           ) : (
             <img src={img.src} alt={img.caption || bar.label} style={{
-              width: "100%", height: img.fit === "contain" ? 200 : 220,
+              width: img.fit === "contain" ? "calc(100% - 32px)" : "100%",
+              height: img.fit === "contain" ? 200 : 220,
               objectFit: img.fit ?? "cover", background: img.fit === "contain" ? "#fff" : T.laneBg,
-              ...(img.fit === "contain" ? { padding: 24, boxSizing: "border-box", borderBottom: `1px solid ${T.cardBorder}` } : {}),
+              ...(img.fit === "contain"
+                ? { padding: 16, boxSizing: "border-box", margin: 16, marginBottom: 0, borderRadius: 8, border: `1px solid ${T.imgFrame}` }
+                : {}),
             }} />
           )
         ) : logo ? (
@@ -225,14 +228,14 @@ const Detail: React.FC<{ bar: Bar; T: Tokens; dark: boolean; onClose: () => void
               {im.scroll ? (
                 <div style={{
                   maxHeight: 340, overflowY: "auto", borderRadius: 6,
-                  border: `1px solid ${T.cardBorder}`, background: "#fff",
+                  border: `1px solid ${T.imgFrame}`, background: "#fff",
                   WebkitOverflowScrolling: "touch",
                 }}>
                   <img src={im.src} alt={im.caption || ""} style={{ width: "100%", display: "block" }} />
                 </div>
               ) : (
                 <img src={im.src} alt={im.caption || ""} style={{
-                  width: "100%", maxHeight: 360, borderRadius: 6, border: `1px solid ${T.cardBorder}`,
+                  width: "100%", maxHeight: 360, borderRadius: 6, border: `1px solid ${T.imgFrame}`,
                   objectFit: im.fit ?? "cover",
                   ...(im.fit === "contain" ? { background: "#fff", padding: 16, boxSizing: "border-box" } : {}),
                 }} />
@@ -282,17 +285,20 @@ const VerticalTimeline: React.FC = () => {
 
   const T: Tokens = dark ? {
     bg: "#0f0e0c", fg: "#f0ede4", muted: "#8a877f", hair: "#2a2822",
-    grid: "#211f1a", laneBg: "#151310", cardBg: "#1a1815", cardBorder: "#2a2822",
+    grid: "#211f1a", laneBg: "#151310", cardBg: "#1a1815", cardBorder: "#2a2822", imgFrame: "#3a372f",
   } : {
-    bg: "#FAFAF7", fg: "#1A1A1A", muted: "#6e6b62", hair: "#E5E2D8",
-    grid: "#ECE9DF", laneBg: "#F3F1EA", cardBg: "#FFFFFF", cardBorder: "#E5E2D8",
+    bg: "#FFFFFF", fg: "#1A1A1A", muted: "#6b6b6b", hair: "#E5E5E5",
+    grid: "#ECECEC", laneBg: "#F4F4F5", cardBg: "#FFFFFF", cardBorder: "#E5E5E5", imgFrame: "#C9C9C9",
   };
 
   const pxPerMonth = mobile ? 22 : 28;
   const MIN_BAR_H = mobile ? 58 : 66;
+  // Logo bars need extra room so the logo banner + label aren't cramped (e.g.
+  // short stints like The Standard). Long-duration logo bars already exceed this.
+  const LOGO_MIN_BAR_H = mobile ? 96 : 104;
   const GAP = 5;
   const height = RANGE * pxPerMonth;
-  const gutter = 48;
+  const gutter = mobile ? 30 : 48;
   const yTop = (ym: YM) => (AXIS_MAX - monthsOf(ym)) * pxPerMonth;
 
   // Lay out each bar: start from the to-scale slot, grow to MIN_BAR_H where
@@ -308,7 +314,7 @@ const VerticalTimeline: React.FC = () => {
         const trueBottom = yTop(b.span.start);
         const slotTop = i > 0 ? yTop(sorted[i - 1].span.start) + GAP : 0;
         const slotBottom = i < sorted.length - 1 ? yTop(sorted[i + 1].span.end ?? NOW) - GAP : height;
-        const desired = Math.max(trueBottom - trueTop, MIN_BAR_H);
+        const desired = Math.max(trueBottom - trueTop, b.logo ? LOGO_MIN_BAR_H : MIN_BAR_H);
         const h = Math.max(8, Math.min(desired, slotBottom - slotTop));
         let top = trueTop;
         if (top + h > slotBottom) top = slotBottom - h;
@@ -318,11 +324,12 @@ const VerticalTimeline: React.FC = () => {
     });
     return map;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pxPerMonth, MIN_BAR_H, height]);
+  }, [pxPerMonth, MIN_BAR_H, LOGO_MIN_BAR_H, height]);
 
+  const laneGap = mobile ? 4 : 8;
   const laneStyle = (lane: number): React.CSSProperties => ({
-    left: `calc(${(lane / LANES) * 100}% + 4px)`,
-    width: `calc(${100 / LANES}% - 8px)`,
+    left: `calc(${(lane / LANES) * 100}% + ${laneGap / 2}px)`,
+    width: `calc(${100 / LANES}% - ${laneGap}px)`,
   });
 
   const openBar = openId ? BARS.find((b) => b.id === openId) ?? null : null;
@@ -336,24 +343,34 @@ const VerticalTimeline: React.FC = () => {
     <div style={{
       fontFamily: '"Work Sans", -apple-system, sans-serif',
       background: T.bg, color: T.fg, minHeight: "100vh",
-      padding: mobile ? "28px 14px 56px" : "48px 24px 72px",
+      padding: mobile ? "0px 14px 56px 6px" : "0px 24px 72px",
       boxSizing: "border-box", transition: "background .2s, color .2s",
     }}>
       <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-        <header style={{ marginBottom: mobile ? 22 : 32, maxWidth: 640 }}>
-          <h1 style={{ fontSize: mobile ? 30 : 42, fontWeight: 500, letterSpacing: -1.1, margin: "0 0 10px", lineHeight: 1.05 }}>
-            {CONTACT.name}
-          </h1>
-          <p style={{ fontSize: mobile ? 14.5 : 16, color: T.fg, opacity: 0.75, margin: 0, lineHeight: 1.45 }}>
-            {CONTACT.bio}
-          </p>
-        </header>
+        {CONTACT.about && (
+          <section style={{ marginBottom: mobile ? 26 : 40, maxWidth: 680 }}>
+            <div style={{
+              fontFamily: '"IBM Plex Mono", monospace', fontSize: 11, color: T.muted,
+              letterSpacing: 1, textTransform: "uppercase", marginBottom: 10,
+            }}>
+              About
+            </div>
+            {CONTACT.about.split("\n\n").map((para, i) => (
+              <p key={i} style={{
+                fontSize: mobile ? 14.5 : 15.5, color: T.fg, opacity: 0.82,
+                margin: i === 0 ? "0 0 12px" : "0 0 12px", lineHeight: 1.65,
+              }}>
+                {para}
+              </p>
+            ))}
+          </section>
+        )}
 
         <div style={{ display: "flex" }}>
           {/* time gutter */}
           <div style={{ position: "relative", width: gutter, flexShrink: 0, height }}>
             {YEARS.map((y) => (
-              <div key={y} style={{ position: "absolute", top: yTop([y, 1]) - 7, right: 8 }}>
+              <div key={y} style={{ position: "absolute", top: yTop([y, 1]) - 7, right: mobile ? 5 : 8 }}>
                 <span style={{ fontFamily: '"IBM Plex Mono", monospace', fontSize: 11, color: T.muted }}>{y}</span>
               </div>
             ))}
@@ -381,6 +398,14 @@ const VerticalTimeline: React.FC = () => {
               const bandH = tall ? 62 : Math.min(64, h - 26);
               const showLogoHeader = !!b.logo && bandH >= 34;
               const ongoing = !b.span.end;
+              // Paint the logo band into the bar's own background as a hard-stop
+              // gradient (gray top, accent below) so the rounded top corners are a
+              // single solid color with no child boundary to antialias against.
+              const accentLayer = ongoing ? `linear-gradient(180deg, ${b.accent}, ${b.accent}cc)` : b.accent;
+              const bandColor = dark ? "#fff" : "#F8F8F9";
+              const barBg = showLogoHeader
+                ? `linear-gradient(to bottom, ${bandColor} 0, ${bandColor} ${bandH}px, transparent ${bandH}px), ${accentLayer}`
+                : accentLayer;
               return (
                 <button key={b.id} onClick={() => setOpenId(b.id)} className="vgt-bar"
                   title={`${b.label} · ${fmtRange(b.span)}`}
@@ -388,19 +413,22 @@ const VerticalTimeline: React.FC = () => {
                     position: "absolute", top, height: h, ...laneStyle(b.lane),
                     border: "none", padding: 0, textAlign: "left", cursor: "pointer",
                     borderRadius: 7, overflow: "hidden", zIndex: 2, color: "#fff",
-                    background: ongoing ? `linear-gradient(180deg, ${b.accent}, ${b.accent}cc)` : b.accent,
+                    background: barBg,
+                    boxShadow: dark ? "none" : "0 1px 4px rgba(0,0,0,0.10)",
+                    transform: "translateZ(0)", WebkitMaskImage: "-webkit-radial-gradient(white, black)",
                     display: "flex", flexDirection: "column",
                   }}>
                   {showThumb && (
                     <img src={img!.src} alt="" style={{
                       width: "100%", height: 58, objectFit: img!.fit ?? "cover", flexShrink: 0,
                       objectPosition: img!.frame === "browser" ? "top" : "center",
-                      ...(img!.fit === "contain" ? { padding: 6, boxSizing: "border-box", background: "rgba(255,255,255,.9)" } : {}),
+                      borderBottom: "1px solid rgba(0,0,0,.12)",
+                      ...(img!.fit === "contain" ? { padding: 6, boxSizing: "border-box", background: "#fff" } : {}),
                     }} />
                   )}
                   {showLogoHeader && (
                     <div style={{
-                      height: bandH, background: "#fff", flexShrink: 0,
+                      height: bandH, background: "transparent", flexShrink: 0,
                       display: "flex", alignItems: "center", justifyContent: "center",
                       padding: "8px 12px", boxSizing: "border-box",
                     }}>
@@ -409,7 +437,7 @@ const VerticalTimeline: React.FC = () => {
                       }} />
                     </div>
                   )}
-                  <div style={{ padding: "7px 9px", minWidth: 0, overflow: "hidden" }}>
+                  <div style={{ padding: mobile ? "7px 4px" : "7px 9px", minWidth: 0, overflow: "hidden" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0 }}>
                       {b.logo && !showLogoHeader && (
                         <img src={b.logo} alt="" style={{
@@ -418,7 +446,7 @@ const VerticalTimeline: React.FC = () => {
                         }} />
                       )}
                       <span style={{
-                        fontSize: 12.5, fontWeight: 600, lineHeight: 1.22,
+                        fontSize: mobile ? 11.5 : 12.5, fontWeight: 600, lineHeight: 1.22,
                         ...(showLogoHeader && !tall ? { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } : {}),
                       }}>{b.label}</span>
                     </div>
