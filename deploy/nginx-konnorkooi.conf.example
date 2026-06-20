@@ -1,0 +1,62 @@
+# ------------------------------------------------------------------
+# Example nginx server block for konnorkooi.com (static Next.js export).
+#
+# This lives ON THE SERVER, not in the deploy — the GitHub Action only
+# rsyncs the built `out/` files into the web root; it does not touch nginx.
+# Treat this as one-time setup (re-apply only when you change headers).
+#
+# Suggested install:
+#   1. Copy security-headers.conf to /etc/nginx/snippets/konnorkooi-headers.conf
+#   2. Merge the relevant parts below into your existing site config at
+#      /etc/nginx/sites-available/konnorkooi.com (keep your real TLS /
+#      server_name / certbot lines).
+#   3. sudo nginx -t && sudo systemctl reload nginx
+#   4. Verify:  curl -sI https://konnorkooi.com | grep -i -E 'content-security|strict-transport|x-frame|x-content|referrer|permissions'
+# ------------------------------------------------------------------
+
+server {
+    listen 443 ssl http2;
+    server_name konnorkooi.com www.konnorkooi.com;
+
+    root /var/www/konnorkooi.com;
+    index index.html;
+
+    # --- TLS (leave your existing certbot-managed lines in place) ---
+    # ssl_certificate     /etc/letsencrypt/live/konnorkooi.com/fullchain.pem;
+    # ssl_certificate_key /etc/letsencrypt/live/konnorkooi.com/privkey.pem;
+
+    # --- Security headers (server scope) ---
+    include /etc/nginx/snippets/konnorkooi-headers.conf;
+
+    # --- Compression ---
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 256;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml application/xml;
+
+    # Next exports clean URLs as <name>.html; this resolves /foo -> /foo.html.
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # Hashed build assets are immutable — cache hard.
+    # (Re-include headers: a nested add_header would otherwise drop them.)
+    location ~* \.(?:js|css|woff2?|png|jpe?g|webp|avif|svg|ico)$ {
+        include /etc/nginx/snippets/konnorkooi-headers.conf;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        access_log off;
+    }
+
+    # HTML must revalidate so deploys show up immediately.
+    location ~* \.html$ {
+        include /etc/nginx/snippets/konnorkooi-headers.conf;
+        add_header Cache-Control "no-cache" always;
+    }
+}
+
+# Redirect plain HTTP to HTTPS.
+server {
+    listen 80;
+    server_name konnorkooi.com www.konnorkooi.com;
+    return 301 https://$host$request_uri;
+}
