@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Head from "next/head";
 import VerticalTimeline from "../components/scroll/VerticalTimeline";
 import { useTheme } from "../components/ThemeProvider";
@@ -70,6 +71,168 @@ const ThemeToggle: React.FC = () => {
   );
 };
 
+// ── Contact popup (header "Contact" button → centered card) ─────────────────
+const ContactPopup: React.FC<{ isDark: boolean; onClose: () => void }> = ({ isDark, onClose }) => {
+  const fg = isDark ? "#f0ede4" : "#1A1A1A";
+  const muted = isDark ? "#8a877f" : "#6b6b6b";
+  // Slightly higher-contrast than `muted` so the contact values stay readable.
+  const value = isDark ? "#bdb9ad" : "#454545";
+  const hair = isDark ? "#2a2822" : "#E5E5E5";
+  const cardBg = isDark ? "#1a1815" : "#FFFFFF";
+  const cardBorder = isDark ? "#2a2822" : "#E5E5E5";
+
+  useEffect(() => {
+    const k = (ev: KeyboardEvent) => ev.key === "Escape" && onClose();
+    window.addEventListener("keydown", k);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", k);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 100,
+        background: isDark ? "rgba(0,0,0,.7)" : "rgba(20,18,14,.35)",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 20,
+      }}>
+      <div
+        onClick={(ev) => ev.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Contact"
+        style={{
+          position: "relative",
+          background: cardBg,
+          color: fg,
+          width: "min(420px, 100%)",
+          borderRadius: 8,
+          border: `1px solid ${cardBorder}`,
+          boxShadow: "0 24px 80px rgba(0,0,0,.25)",
+          padding: "22px 24px 24px",
+          boxSizing: "border-box",
+        }}>
+        <div
+          style={{
+            fontFamily: '"IBM Plex Mono", monospace',
+            fontSize: 11,
+            color: muted,
+            letterSpacing: 1,
+            textTransform: "uppercase",
+            marginBottom: 16,
+          }}>
+          Contact
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {CONTACT.contacts.map((c, i) => {
+            const external = !c.href.startsWith("mailto:");
+            return (
+              <a
+                key={c.href}
+                href={c.href}
+                {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                className="contact-row"
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  gap: 16,
+                  padding: "12px 4px",
+                  textDecoration: "none",
+                  color: fg,
+                  borderTop: i === 0 ? "none" : `1px solid ${hair}`,
+                }}>
+                <span style={{ fontSize: 13.5, fontWeight: 500 }}>{c.label}</span>
+                <span
+                  style={{
+                    fontFamily: '"IBM Plex Mono", monospace',
+                    fontSize: 12.5,
+                    color: value,
+                    textAlign: "right",
+                    wordBreak: "break-all",
+                  }}>
+                  {c.value}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: "absolute",
+            top: 14,
+            right: 14,
+            width: 30,
+            height: 30,
+            borderRadius: 15,
+            border: "none",
+            cursor: "pointer",
+            background: cardBg,
+            color: fg,
+            fontSize: 17,
+            lineHeight: 1,
+            boxShadow: "0 2px 8px rgba(0,0,0,.15)",
+          }}>
+          ×
+        </button>
+      </div>
+      <style>{`
+        .contact-row { transition: background .15s; border-radius: 6px; }
+        .contact-row:hover { background: ${isDark ? "rgba(255,255,255,.05)" : "rgba(0,0,0,.04)"}; }
+      `}</style>
+    </div>,
+    document.body,
+  );
+};
+
+const ContactButton: React.FC = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const color = isDark ? "#f0ede4" : "#1A1A1A";
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        aria-haspopup="dialog"
+        style={{
+          flexShrink: 0,
+          height: 32,
+          padding: "0 13px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: '"Work Sans", -apple-system, sans-serif',
+          fontSize: 13.5,
+          fontWeight: 500,
+          lineHeight: 1,
+          background: "transparent",
+          border: `1px solid ${color}`,
+          borderRadius: 9,
+          cursor: "pointer",
+          color,
+          transition: "color .15s, border-color .15s",
+        }}>
+        Contact
+      </button>
+      {open && <ContactPopup isDark={isDark} onClose={() => setOpen(false)} />}
+    </>
+  );
+};
+
 const NavBar: React.FC = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -124,7 +287,10 @@ const NavBar: React.FC = () => {
           }}>
           {CONTACT.name}
         </span>
-        <ThemeToggle />
+        <div style={{ display: "flex", alignItems: "center", gap: mobile ? 8 : 10, flexShrink: 0 }}>
+          <ContactButton />
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );

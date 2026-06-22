@@ -124,6 +124,16 @@ export type Event = {
   modal?: boolean;
 };
 
+/** One row in the Contact popup (header → "Contact" button). */
+export type ContactMethod = {
+  /** Row label, e.g. "Personal email". */
+  label: string;
+  /** Display value, e.g. "konnorjkooi@gmail.com" or "in/konnorkooi". */
+  value: string;
+  /** mailto: or external URL. */
+  href: string;
+};
+
 export type Contact = {
   name: string;
   bio: string;
@@ -131,6 +141,8 @@ export type Contact = {
   about?: string;
   email: string;
   links: { label: string; href: string }[];
+  /** Full contact list shown in the header popup. */
+  contacts: ContactMethod[];
 };
 
 export const EVENTS: Event[] = [
@@ -350,6 +362,12 @@ export const CONTACT: Contact = {
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/konnorkooi/" },
     { label: "GitHub",   href: "https://github.com/KonnorKooi" },
-    { label: "Site",     href: "https://konnorkooi.com/" },
+  ],
+  contacts: [
+    { label: "Personal email", value: "konnorjkooi@gmail.com", href: "mailto:konnorjkooi@gmail.com" },
+    { label: "School email",   value: "kooik2@wwu.edu",        href: "mailto:kooik2@wwu.edu" },
+    { label: "LinkedIn",       value: "in/konnorkooi",         href: "https://www.linkedin.com/in/konnorkooi/" },
+    { label: "GitHub",         value: "KonnorKooi",            href: "https://github.com/KonnorKooi" },
+    // { label: "Resume",      value: "Download PDF",          href: "/Konnor_Kooi_Resume.pdf" },
   ],
 };
