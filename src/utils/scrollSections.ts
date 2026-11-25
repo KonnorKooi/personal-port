@@ -21,7 +21,7 @@ export const SPANS: Record<string, Span> = {
   "conflict-forecast":  { start: [2026, 4], end: [2026, 6] },
   "qidds":              { start: [2025, 4], end: [2026, 6] },
   "masters-start":      { start: [2026, 4], end: [2027, 6] },  // MS graduation
-  "the-standard":       { start: [2026, 6], end: [2026, 9] },  // internship end
+  "the-standard":       { start: [2026, 6] },  // ongoing
 };
 
 const _now = new Date();
